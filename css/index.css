@@ -1,0 +1,160 @@
+h1 {
+    position: absolute;
+    right: 67%;
+}
+
+h2 {
+    color: black;
+    margin-left: 10px;
+}
+
+h3  {
+    color: black;
+    margin-left: 15px;
+    margin: 5px;
+}
+
+.logo {
+    width: auto;
+    height: 90px;
+    position: absolute;
+    top: 3%;
+    right: 5%;
+}
+
+.wave {
+    width: 700px;
+    height: auto;
+    position: absolute;
+    top: 460px;
+    right: 700px;
+}
+
+.cloud1 {
+    width: 250px;
+    height: auto;
+    position: absolute;
+    top: 400px;
+    right: 120px;
+}
+
+.cloud2 {
+    width: 114px;
+    height: auto;
+    position: absolute;
+    top: 120px;
+    left: 175px;
+}
+
+.cloud3 {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: 250px;
+    right: 100px;
+}
+
+.info-Box {
+    width: 200px;
+    height: 50px;
+    border: 3px solid black;
+    border-radius: 3px;
+    font-size: 15px;
+    background-color: white;
+    font-weight: 700;
+    transition: .4s;
+    box-shadow: 2px 2px 5px;
+}
+
+.Updates-Box {
+    width: 200px;
+    height: 50px;
+    border: 3px solid black;
+    border-radius: 3px;
+    font-size: 15px;
+    background-color: white;
+    font-weight: 700;
+    transition: .4s;
+    box-shadow: 2px 2px 5px;
+}
+
+body {
+    background: rgb(19,18,18);
+    background: linear-gradient(311deg, rgba(19,18,18,1) 0%, rgba(18,17,17,1) 80%, #143d46 100%);
+    background-size: cover;
+    color: white;
+    position: relative;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    opacity: .8;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+.side-nav a {
+    padding: 0px 10px 5px 30px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #ccc;
+    display: block;
+    transition: 0.3s;
+}
+
+.side-nav a:hover {
+    color: #fff;
+}
+
+.side-nav .btn-close {
+    position: absolute;
+    top: 0;
+    right: 22px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left 0.5s;
+    padding: 20px;
+    overflow: hidden;
+    width: 100%
+}
+
+@media (min-widht: 568px) {
+    .open-slide{display: none}
+}
+
+.info-Box {
+    width: 350px;
+    height: 450px;
+    background-color: white;
+    position: absolute;
+    left: 300px;
+    top: 150px;
+}
+
+.Updates-Box {
+    width: 350px;
+    height: 440px;
+    background-color: white;
+    position: absolute;
+    right: 300px;
+    top: 150px;
+}
