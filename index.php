@@ -1,65 +1,100 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>BitFeed Home</title>
-        <link rel="stylesheet" href="css/index.css">
-    </head>
-    <body>
+<html lang="en">
 
-        <h1>Home Page</h1>
-        <img class="logo" src="images/logo/logo.png" alt="">
-        <img class="wave" src="SVG/Wave.svg" alt="">
-        <img class="cloud1" src="SVG/Cloud.svg" alt="">
-        <img class="cloud2" src="SVG/Cloud.svg" alt="">
-        <img class="cloud3" src="SVG/Cloud.svg" alt="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/82664ff85a.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Hind&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Welcome on Bit-Feed!</title>
+</head>
 
-        <nav class="navbar">
-            <span class="Open-span">
-                <a href="#" onclick="openSlideMenu()">
-                    <svg width= "30" height= "30">
-                        <path d="M0, 5 30,5" stroke="#fff" stroke-width="5"/>
-                        <path d="M0, 14 30,14" stroke="#fff" stroke-width="5"/>
-                        <path d="M0, 23 30,23" stroke="#fff" stroke-width="5"/>
-                    </svg>
-                </a>
-            </span>
-        </nav>
+<body>
+    <section id="homeSlide">
+        <div class="home">
+            <nav class="nav">
+                <img class="nav-img" src="images/bitwhite.png" alt="bit-logo">
 
-        <div id="side-menu" class="side-nav">
-            <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-            <li><a href="index.php">Home</li>
-            <li><a href="login.php">Login</li>
-            <li><a href="#">Personal goals</li>
-            <li><a href="doelen.php">Other person goals</li>
+                <ul class="nav-link">
+                    <li><a href="index.php"><i class="fas fa-bars"></i> Home</a></li>
+                    <li><a href="contact.php"><i class="far fa-comments"></i> Contact</a></li>
+                    <li><a href="login.php"><i class="far fa-bookmark"></i> Login</a></li>
+                </ul>
+            </nav>
+
+            <div class="front">
+                <div class="front-left">
+                    <div class="front-speech">
+                        <h2 class="front-title">The Retrospective Tool</h1>
+                            <p class="front-text">
+                                The retrospective tool with the possibility to share your goals and receive feedback.
+                            </p>
+                            <div class="front-buttons">
+                                <a href="register.php">Register here</a>
+                                <a href="login.php">Login</a>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="front-right">
+                    <img class="group-svg" src="SVG/group.svg" alt="Group svg">
+                </div>
+            </div>
         </div>
+    </section>
 
-        <script type="text/javascript">
-            function openSlideMenu() {
-                document.getElementById("side-menu").style.width= "250px";
-                document.getElementById("main").style.marginLeft= "250px";
-            }
+    <section id="infoSlide">
+        <div class="home">
+            <div class="back">
+                <div class="back-left">
+                    <div class="left-book">
+                        <div class="l-page">
+                            <img src="images/goals.png" alt="goal">
+                            <span>Reach your goals</span>
+                        </div>
 
-            function closeSlideMenu() {
-                document.getElementById("side-menu").style.width= "0px";
-                document.getElementById("main").style.marginLeft= "0px";
-            }
+                        <div class="l-page">
+                            <img src="images/tool.png" alt="goal">
+                            <span>Adjustable for everyone</span>
+                        </div>
+                    </div>
 
-        </script>
+                    <div class="right-book">
+                        <div class="r-page">
+                            <img src="images/smile.png" alt="goal">
+                            <span>User friendly UI</span>
+                        </div>
 
-        <form class="box" method="post">
-            <div class="info-Box">
-                <h2>Information</h2>
-                    <h3>How does this website work?</h3>
-                    <h3>With BitFeed you can see your goals easy.</h3>
-                    <h3>Everyone can see your goals and comment on them, so you will reach your goals easier and faster.</h3>
-                    <h3>In order for you to use the BitFeed you need to make a account, simply done with clicking on the long in tab and make a account.</h3>
-                    <h3>When you have your account you can start using BitFeed, just place a goal you want to reach in the tab personal goals.</h3>
-                    <h3>If you want to see other people there goals you can click on the tab other person goals.</h3>
+                        <div class="r-page">
+                            <img src="images/feedback.png" alt="goal">
+                            <span>Get feedback from other's</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="back-right">
+                    <div class="cover">
+                        <h2 class="back-title">Get the most out of your sprints with every option.</h2>
+                        <p class="back-text">
+                            We are students of the <a href="https://www.bit-academy.nl/" target="_blank"
+                            style="color: #3CACFF;">Bit-Acadamy</a> and we build the Bit-Feed Tool.
+                            This retrospective tool will help you with a sprint meeting, project meeting or
+                            study meetings.
+                        </p>
+
+                        <p class="back-text">
+                            The tool is build with a purpose to help your sprints during a meeting,
+                            see what went well and what you could do better. We use a retro board where
+                            you are able to add or adjust the statements that you use.
+                            Also do we have the feature to let someone else see a specific goal that you set.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="Updates-Box">
-                <h2>Updates</h2>
-                    <h3>In here you can see all the recent updates the website has.</h3>
-            </div>
-        </form>
-    </body>
+        </div>
+    </section>
+</body>
+
 </html>
