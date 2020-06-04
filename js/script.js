@@ -1,78 +1,71 @@
-$(document).on("click","button",function (){
-    $('ul').append('<li>Item</li>');
-    $( "li" ).addClass( "editable" );
-    // alert("hdvhde");
+$(document).on("click","#addItem1",function (){
+    $('.modal').css('display','block');
   });
 
 
-$(document).on("mousedown",function() {
-  $(".sortableList").sortable({
-      connectWith: "#li_drag",
-      revert: true,
 
+  $(document).on("click",".create_item",function (){
+      $('ul').append('<li>Item</li>');
+      $( "li" ).addClass("ui-state-default");
+      $( "li" ).addClass( "editable");
+      $('.modal').css('display','none');
+    });
+
+  $(document).on("click",".close",function (){
+      $('.modal').css('display','none');
+    });
+
+
+  $(document).ready(function() {
+    $(document).on("click","li",function (){
+      alert("heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+    // $( "#sortable1, #sortable2, #sortable3" ).sortable({connectWith: ".connectedSortable"}).disableSelection();
   });
 });
 
-  $(".draggable").draggable({
-      connectToSortable: '.sortableList',
-      // connectWith: ".connectTo",
-      cursor: 'pointer',
-      helper: 'clone',
-      revert: 'invalid'
-  });
-
-  a =  30000;
-
-  	$(".slide").draggable({
-
-  		revert:true,
-
-  		start: function(event, ui) {  },
-  		drag:function () {
-  			$(this).removeClass('droped');
-  		},
-  		// removing the CSS classes once dragging is over.
-  		stop:function () {
-  			$(this).addClass('droped');
-  		},
-  		zIndex: 10000,
-  		snapMode: "inner"
-  	});
-// $(document).on("mousedown",function() {
-//   $( "box1, .box2, .box3" ).sortable({
-    // connectWith: ".connectTo",
-    // stop: function(event, ui) {
-    //     $('.connectTo').each(function() {
-    //         result = "";
-    //         alert($(this).sortable("toArray"));
-            // $(this).find("li").each(function(){
-                // result += $(this).text() + ",";
-            // });
-            // $("."+$(this).attr("id")+".list").html(result);
-//         });
-//     }
-// });
+// $(document).on("click","#addItem1", function (){
+//   $("#modal_dialog").dialog();
+// }
+// $(document).on("click","button", function (){
 //
+//   if (this.id == 'addItem1'){
+//     alert("dhgfggegfksehcfjkfgvhb");
+//     $('ul').append('<li>Item</li>');
+//     $( "li" ).addClass("ui-state-default");
+//     $( "li" ).addClass( "editable");
+//   }
+//
+//   if (this.id == 'addItem2'){
+//     alert("hey");
+//     $('ul').append('<li>Item</li>');
+//     $( "li" ).addClass("ui-state-default");
+//     $( "li" ).addClass( "editable");
+//
+//   }
+//
+//
+//   if (this.id == 'addItem3'){
+//     alert("powerrangers");
+//     $('ul').append('<li>Item</li>');
+//     $( "li" ).addClass("ui-state-default");
+//     $( "li" ).addClass( "editable");
+
+  // }
+
+
 // });
 
 $(document).ready(function() {
     $(document).on("click",".editable", function (){
+      // $(".fa-close").prop("disabled" , true);
         var that = $(this);
         if (that.find('input').length > 0) {
             return;
         }
         var currentText = that.text();
 
-        var $input = $('<input>').val(currentText)
-        .css({
-            'position': 'absolute',
-            top: '0px',
-            left: '0px',
-            width: that.width(),
-            height: that.height(),
-            opacity: 0.9,
-            padding: '10px'
-        });
+        var $input = $('<input>').val(currentText);
+
 
         $(this).append($input);
 
@@ -87,31 +80,27 @@ $(document).ready(function() {
     });
 });
 
-
-$(function  () {
-  $("ol.example").sortable();
-});
-
-
-var oldContainer;
-$("ol.nested_with_switch").sortable({
-  group: 'nested',
-  afterMove: function (placeholder, container) {
-    if(oldContainer != container){
-      if(oldContainer)
-        oldContainer.el.removeClass("active");
-      container.el.addClass("active");
-
-      oldContainer = container;
-    }
-  },
-  onDrop: function ($item, container, _super) {
-    container.el.removeClass("active");
-    _super($item, container);
-  }
-});
-
-$(".switch-container").on("click", ".switch", function  (e) {
-  var method = $(this).hasClass("active") ? "enable" : "disable";
-  $(e.delegateTarget).next().sortable(method);
-});
+// var modal = document.getElementById("myModal");
+//
+// // Get the button that opens the modal
+// var btn = document.getElementById("addItem1");
+//
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+//
+// // When the user clicks the button, open the modal
+// btn.onclick = function() {
+//   modal.style.display = "block";
+// }
+//
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//   modal.style.display = "none";
+// }
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }

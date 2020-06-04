@@ -139,62 +139,141 @@ height:inherit;
   background-color: purple;
 }
 
-#sortableList { list-style-type: none; margin: 0; padding: 0; width:200px; }
-#sortableList li { background-color: red; margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-
-
-
 .containment{
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
   grid-auto-columns: auto;
-  grid-template-areas: "container1 container2 container3";
+  grid-template-areas: containment";
   grid-template-rows: auto;
   border: 2px solid black;
   justify-items:  center;
 }
 
-body.dragging, body.dragging *{
-  cursor: move !important
-}
 
-.dragged{
-  position: absolute;
-  top: 0;
-  opacity: .5;
-  z-index: 2000;
-}
 
-ol.vertical {
 
-  margin: 0 0 9px 0;
-  min-height: 10px;
-}
   li{
 
     display: block;
     margin: 5px;
     padding: 5px;
     border: 1px solid #CCC;
-    color: $linkColor;
-    background: $grayLighter;
+    color: black;
+    background: gray;
+    min-width: 222px;
   }
-  li.placeholder {
 
-    position: relative
-    margin: 0
-    padding: 0
-    border: none
-    &:before
-      position: absolute
-      content: ""
-      width: 0
-      height: 0
-      margin-top: -5px
-      left: -5px
-      top: -4px
-      border: 5px solid transparent
-      border-left-color: $error
-      border-right: none
-    }
+
+.container1 , .container2 , .container3{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* width: 100%; */
+  align-self: baseline;
+}
+
+h3{
+  width: fit-content;
+  margin: 0px;
+}
+
+#title{
+  display: flex;
+  /* border: 2px solid black; */
+  margin: 0px;
+  height: fit-content;
+  justify-content: center;
+  /* width: 100%; */
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+span{
+height: auto;
+border: 2px solid black;
+padding: 5px;
+display: flex;
+width: 30px;
+margin: 0px;
+justify-content: center;
+}
+
+
+.flexs{
+  display: flex;
+}
+.button{
+  display: flex;
+}
+
+
+.column{
+  display: flex;
+}
+
+.column button{
+  height: 30px;
+}
+
+#clicked{
+  height: 30px;
+}
+
+ul{
+  padding: 0px;
+  margin: 0px;
+}
+
+.fa-close{
+  position:relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 20%;
+  left: 90%;
+}
+
+#sortable1, #sortable2 , #sortable3 {
+  /* border: 1px solid #eee; */
+  width: 142px;
+  min-height: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0 0 0;
+  float: left;
+  margin-right: 10px;
+}
+#sortable1 li, #sortable2 li, #sortable3 li {
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 120px;
+}
+
+
+.modal{
+  position: absolute;
+  z-index: 99;
+  left: 50%;
+  top: 50%;
+  border: 2px solid black;
+  margin-top: -100px;
+  margin-left: -200px;
+  width: 400px;
+  height: 200px;
+  padding: 20px;
+}
+
+.modal-title{
+  text-align: center;
+}
+
+.modal-dialog , .modal-content{
+  height: 100%;
+}
+
+.modal-footer{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: fit-content;
+}
