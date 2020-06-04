@@ -1,0 +1,279 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  background: url("SVG/BackgroundIndex.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Ubunto", sans-serif;
+}
+
+html, body{
+  min-height: 100%;
+}
+
+#header{
+  padding-right: 2em;
+  display: flex;
+  justify-content: space-between;
+}
+#header > h1{
+  padding-left: 2.4em;
+  color: white;
+}
+
+#header > img{
+  display: flex;
+  justify-content: flex-end;
+  height: 90px;
+}
+
+
+#container{
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-auto-rows: auto;
+  grid-template-areas: main;
+  column-gap: 10px;
+  min-height: calc(100vh - 10px);
+  padding-bottom: 60px;
+}
+#container > .sidebar_left> h3{
+  color: white;
+}
+
+.sidebar_left{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+}
+
+#button_styles{
+  background-color: #0071BC;
+  width: fit-content;
+  color: white;
+}
+
+#button_styles > h3{
+    padding: 10px 40px;
+}
+
+.content{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows:  repeat(auto,minmax(80, auto));
+  grid-template-areas: content;
+  column-gap: 20px;
+  row-gap: 20px;
+  margin: 30px;
+  padding: 10px;
+}
+.standard_layout > h3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.standard_layout{
+  display: flex;
+  flex-direction: column;
+}
+
+.blok{
+  color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  border: 1px solid;
+  box-shadow: 5px 10px;
+}
+
+
+
+.box_shadow{
+  margin: 10px;
+  padding: 10px;
+  background-color: turqoise;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+.add_goal{
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: auto;
+  grid-template-areas: add_goal;
+  column-gap: 50px;
+  row-gap: 20px;
+  justify-items: center;
+}
+
+
+
+.bg{
+  padding: 10px;
+  background-color: yellow;
+  text-align: center;
+  width: 400px;
+}
+
+.add_list{
+  background-color: black;
+  border: 2px solid white;
+  height: 200px;
+  width: 200px;
+}
+.list_content{
+background-color: orange;
+height:inherit;
+}
+#footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clear: both;
+  height:60px;
+  color: black;
+  position: relative;
+  margin-top: -60px;
+  background-color: purple;
+}
+
+.containment{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-auto-columns: auto;
+  grid-template-areas: containment";
+  grid-template-rows: auto;
+  border: 2px solid black;
+  justify-items:  center;
+}
+
+
+
+
+  li{
+
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #CCC;
+    color: black;
+    background: gray;
+    min-width: 222px;
+  }
+
+
+.container1 , .container2 , .container3{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* width: 100%; */
+  align-self: baseline;
+}
+
+h3{
+  width: fit-content;
+  margin: 0px;
+}
+
+#title{
+  display: flex;
+  /* border: 2px solid black; */
+  margin: 0px;
+  height: fit-content;
+  justify-content: center;
+  /* width: 100%; */
+  padding-bottom: 50px;
+  padding-top: 20px;
+}
+span{
+height: auto;
+border: 2px solid black;
+padding: 5px;
+display: flex;
+width: 30px;
+margin: 0px;
+justify-content: center;
+}
+
+
+.flexs{
+  display: flex;
+}
+.button{
+  display: flex;
+}
+
+
+.column{
+  display: flex;
+}
+
+.column button{
+  height: 30px;
+}
+
+#clicked{
+  height: 30px;
+}
+
+ul{
+  padding: 0px;
+  margin: 0px;
+}
+
+.fa-close{
+  position:relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 20%;
+  left: 90%;
+}
+
+#sortable1, #sortable2 , #sortable3 {
+  /* border: 1px solid #eee; */
+  width: 142px;
+  min-height: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 0 0 0;
+  float: left;
+  margin-right: 10px;
+}
+#sortable1 li, #sortable2 li, #sortable3 li {
+  margin: 0 5px 5px 5px;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 120px;
+}
+
+
+.modal{
+  position: absolute;
+  z-index: 99;
+  left: 50%;
+  top: 50%;
+  border: 2px solid black;
+  margin-top: -100px;
+  margin-left: -200px;
+  width: 400px;
+  height: 200px;
+  padding: 20px;
+}
+
+.modal-title{
+  text-align: center;
+}
+
+.modal-dialog , .modal-content{
+  height: 100%;
+}
+
+.modal-footer{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: fit-content;
+}
