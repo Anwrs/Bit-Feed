@@ -140,7 +140,8 @@ height:inherit;
 }
 
 .containment{
-  height: 100vh;
+  height: 100%;
+  max-height: 100vh;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-auto-columns: auto;
@@ -165,7 +166,7 @@ height:inherit;
   }
 
 
-.container1 , .container2 , .container3 , .add_Column{
+.container , .add_Column{
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -232,7 +233,7 @@ ul{
   left: 90%;
 }
 
-#sortable1, #sortable2 , #sortable3 {
+#sortable {
   /* border: 1px solid #eee; */
   width: 142px;
   min-height: 20px;
@@ -242,7 +243,7 @@ ul{
   float: left;
   margin-right: 10px;
 }
-#sortable1 li, #sortable2 li, #sortable3 li {
+#sortable li {
   margin: 0 5px 5px 5px;
   padding: 5px;
   font-size: 1.2em;

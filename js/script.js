@@ -9,7 +9,7 @@
 
 
 
-$(document).on("click","#addItem1", function (){
+$(document).on("click","#addItem", function (){
     $('.modal').css('display','block');
 });
 
@@ -31,7 +31,7 @@ $(document).on("mousedown",function() {
 
 var update = function(e) {
     var name = $('#modal_dialog #li_val').val();
-     $("#sortable1").append('<li>'+name+'</li>');
+     $("#sortable").append('<li>'+name+'</li>');
 };
 $('.save').click(update);
 
@@ -48,6 +48,16 @@ $(document).on("click","li",function (){
 // };
 // $('.update_val').click(renew);
 
+
+$(document).on('click','.add_Column',function (){
+  var $newDiv= $('<div class="container"><div id="title"><h3 class="editable">Title</h3><button type="button" id="addItem" name="button">+</button></div><ul  id="sortable" class="connectedSortable" ></div>');
+  $('.containment').append($newDiv);
+
+  $('ul').sortable({
+    connectWith:'.connectedSortable',
+    cursor: 'pointer'
+  });
+});
 
 $(function () {
   $("ul").sortable({

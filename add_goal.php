@@ -63,46 +63,40 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-<a href="#"  class="view" >View</a>
-<div id="dialogBox" title="details" style="display: none;">
-    <div id="list" class="ui-popup">
-        <label for="name">Add name</label><br/>
-        <input style="width: 50%;" type='text' id="name" value="" >
-        <input type="submit" class="save" id="save" value="SAVE"/>
-
-        <ul id="namelist">
-            <li>reena</li>
-        </ul>
-    </div>
-</div>
-
 
 
 
 
       <div class="containment">
-            <div class="container1">
+            <div class="container">
               <div id="title">
                 <h3 class="editable" id="textq">Title</h3>
-                <button type="button"  id="addItem1" name="button">+</button>
+                <button type="button"  id="addItem" name="button">+</button>
               </div>
-              <ul   id="sortable1" class="connectedSortable">
+              <ul   id="sortable" class="connectedSortable">
             </div>
-            <div class="container2">
 
+            <div class="container">
+              <div id="title">
+                <h3 class="editable" id="textq">Title</h3>
+                <button type="button"  id="addItem" name="button">+</button>
+              </div>
+              <ul   id="sortable" class="connectedSortable">
+            </div>
+            <!-- <div class="container2">
               <div id="title">
                 <h3 class="editable">Title</h3>
                 <button type="button" id="addItem2" name="button">+</button>
               </div>
               <ul id="sortable2" class="connectedSortable" >
-            </div>
-            <div class="container3">
+            </div> -->
+            <!-- <div class="container3">
               <div id="title">
                 <h3 class="editable">Title</h3>
                 <button type="button" id="addItem3" name="button">+</button>
               </div>
               <ul  id="sortable3" class="connectedSortable" >
-            </div>
+            </div> -->
 
           <div class="add_Column">
             <button type="button" name="button" id="column">+</button>
