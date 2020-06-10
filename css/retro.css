@@ -1,7 +1,7 @@
 body{
   margin: 0px;
   padding: 0px;
-  background: url("SVG/BackgroundIndex.svg");
+  background: url("../SVG/BackgroundIndex.svg");
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Ubunto", sans-serif;
@@ -24,7 +24,7 @@ html, body{
 #header > img{
   display: flex;
   justify-content: flex-end;
-  height: 90px;
+  height: 50px;
 }
 
 
@@ -144,9 +144,9 @@ height:inherit;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-auto-columns: auto;
-  grid-template-areas: containment";
+  grid-template-areas: containment;
   grid-template-rows: auto;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   justify-items:  center;
 }
 
@@ -165,7 +165,7 @@ height:inherit;
   }
 
 
-.container1 , .container2 , .container3{
+.container1 , .container2 , .container3 , .add_Column{
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -276,4 +276,11 @@ ul{
   align-items: flex-end;
   justify-content: flex-end;
   height: fit-content;
+}
+
+
+#column{
+  border: none;
+  color: white;
+  background-color: red;
 }

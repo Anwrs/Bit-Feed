@@ -10,12 +10,13 @@
          <link rel="stylesheet" href="/resources/demos/style.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+               <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+         <script   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="   crossorigin="anonymous"></script>
     <title></title>
   </head>
   <body>
     <header id="header">
-      <h1>BitFeed</h1>
-      <img src="images/logo/logo.png">
+      <img src="images/bitwhite.png" alt="bit-logo">
     </header>
 
     <main>
@@ -28,17 +29,57 @@
       </div>
       <div class="modal-body">
         <p>Show Input value option</p>
+        <input type="text" name="subject" value="" id="li_val"placeholder="subject....">
         <p>Team Members</p>
         <h6>select memebers</h6>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
-        <button type="button" id="submit" class="btn btn-primary create_item">Save changes</button>
+        <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-      <hr>
+      <!-- <hr> -->
+
+
+      <div class="modal_li fade" tabindex="-1" role="dialog" id="modal_update" style="display:none">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Li</h4>
+          </div>
+          <div class="modal-body">
+            <p>Show Input value option</p>
+            <input type="text" name="subject" value="" id="update_val"placeholder="subject....">
+            <p>Team Members</p>
+            <h6>select memebers</h6>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
+            <button type="button" id="send" class="btn btn-primary create_item update">Save changes</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+<a href="#"  class="view" >View</a>
+<div id="dialogBox" title="details" style="display: none;">
+    <div id="list" class="ui-popup">
+        <label for="name">Add name</label><br/>
+        <input style="width: 50%;" type='text' id="name" value="" >
+        <input type="submit" class="save" id="save" value="SAVE"/>
+
+        <ul id="namelist">
+            <li>reena</li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+
       <div class="containment">
             <div class="container1">
               <div id="title">
@@ -63,8 +104,11 @@
               <ul  id="sortable3" class="connectedSortable" >
             </div>
 
+          <div class="add_Column">
+            <button type="button" name="button" id="column">+</button>
+          </div>
         </div>
-      <hr>
+      <!-- <hr> -->
     </main>
     <script type="text/javascript" src="js/script.js"></script>
   </body>
