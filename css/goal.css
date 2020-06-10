@@ -1,0 +1,407 @@
+body, html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+}
+
+body {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 9%;
+    display: flex;
+    background: rgb(31,185,255);
+    background: linear-gradient(135deg, rgba(31,185,255,1) 0%, rgba(94,157,255,1) 55%, rgba(159,127,255,1) 100%);
+}
+
+main {
+    width: 100%;
+    height: 91%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-image: url('../SVG/BackgroundField.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.nav {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-img {
+    width: 11%;
+    height: auto;
+    margin: auto;
+}
+
+.nav-link {
+    margin:  0 0 0 40%;
+    width: 40%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link li {
+    margin: auto;
+    list-style-type: none;
+}
+
+.nav-link a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    transition: .4s;
+    font-weight: lighter;
+}
+
+.nav-link a i {
+    color: white;
+    transition:  .4s;
+}
+
+.nav-link a:hover {
+    color: #9946b3;
+}
+
+.nav-link a:hover i{
+    color: #9946b3;
+}
+
+.nav-link span {
+    color: white;
+    font-size: 20px;
+    transition: .4s;
+    font-weight: lighter;
+}
+
+.box-container {
+    width: 75%;
+    min-height: 80%;
+    max-height: 95%;
+    display: grid;
+    grid-column-gap: 2px;
+    grid-template-columns: auto auto auto auto auto;
+    position: relative;
+    margin: auto;
+}
+
+.goal-box {
+    width: 200px;
+    height: 100px;
+    border: 2px solid #23B8FF;
+    padding: 10px;
+    margin:  10% 5% 10% 10%;
+    background: #F0F0F0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: 2px 2px 3px #cecece;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    transition: .4s;
+}
+
+.goal-box:nth-child(even) {
+    border-color: #9982FF;
+}
+
+.goal-box p:first-child {
+    width: 100%;
+    height: 70%;
+    margin: auto;
+}
+
+.goal-box p:last-child {
+    width: 100%;
+    height: 20%;
+    margin: auto;
+}
+
+.goal-box a {
+    text-decoration: none;
+    color: black;
+    transition: .4s;
+}
+
+.goal-box:nth-child(even):hover {
+    background: #cabbe9;
+}
+
+.goal-box:hover {
+    box-shadow: 5px 5px 5px #cdcdcd;
+    background: #a1eafb;
+}
+
+/* HIER KOMT DE MODAAAAAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 70%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* The Close Button */
+.close, .theclose {
+  color: #aaa;
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover + .theclose:hover,
+.close:focus + .theclose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/*  EINDE MODAAAAAAAAL */
+
+.right-container {
+    position: relative;
+    width: 15%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+}
+
+#myBtn, #theBtn {
+    width: 60%;
+    height: 10%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    margin-top: 15%;
+    border: 2px solid white;
+    color: white;
+    background: #9982FF;
+    font-size: 20px;
+    box-shadow: #cdcdcd 2px 2px 2px;
+    outline: none;
+    cursor: pointer;
+    transition: .4s;
+}
+
+#myBtn:hover, #theBtn:hover {
+    background: #FFFFFF;
+    color: #000000;
+    border-color: #9982FF;
+}
+
+.modal-content h1{
+    font-size: 40px;
+}
+
+.field-form {
+    margin: auto;
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.field-form label {
+    font-size: 25px;
+    margin: 0 0 1% 0;
+}
+
+.field-form label:first-child {
+    margin: 0 0 0 0;
+}
+
+.field-form input {
+    width: 60%;
+    font-size: 20px;
+    margin: 0 0 2% 0;
+    padding: 5px;
+    outline: none;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.field-form button{
+    padding: 10px;
+    width: 63%;
+    height: 40px;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    color: white;
+    background: #3CACFF;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    box-shadow: 2px 2px 2px grey;
+    transition: .4s;
+    cursor: pointer;
+    margin-top: 5%;
+}
+
+.field-form button:hover {
+    background-color: #9946b3;
+    transform: scale(1.05);
+}
+
+.field-form input[type='radio'] {
+    margin: 0;
+    width: 20%;
+    align-items: center;
+    text-align: center;
+}
+
+.public-text {
+    display: none;
+    position: relative;
+    transition: .2s;
+    color: #9982FF;
+}
+
+.public-hover {
+    color: black;
+    transition: .2s;
+    width: 22%;
+}
+
+.public-hover:hover {
+    color: #9982FF;
+}
+
+.public-hover:hover + .public-text {
+    display: block;
+}
+
+.radio-lbl {
+    margin: 0;
+    font-size: 10px;
+}
+
+#Yes, #No, #Personal, #Group {
+    width: 20px;
+    margin-right: 2%;
+}
+
+.radio-input {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+}
+
+.radio-input:nth-last-child(an+b) {
+    margin-bottom: 10%;
+}
+
+#logout {
+    width: auto;
+    height: auto;
+    display: flex;
+}
+
+#logout button {
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: white;
+    transition: .3s;
+}
+
+#logout button:hover {
+    cursor: pointer;
+    color: #9946b3;
+}
+
+.help-text {
+    width: 90%;
+    height: 45%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    margin: 0 auto 0 auto;
+    border: 2px solid white;
+    color: white;
+    background: #9982FF;
+    font-size: 20px;
+    box-shadow: #cdcdcd 2px 2px 2px;
+    transition: .4s;
+    padding: 5px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 3px solid #9982FF;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#GroupInput1,#GroupInput2,#GroupInput3,#GroupInput4 {
+    display: none;
+}

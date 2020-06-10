@@ -1,10 +1,13 @@
 <?php
+session_start();
 
 $name = "";
 $email = "";
 $password = "";
 $password2 = "";
 $errors = [];
+
+include 'config/database.php';
 
 if (isset($_POST['submit'])) {
 
@@ -14,32 +17,51 @@ if (isset($_POST['submit'])) {
     $password2 = $_POST['password2'];
 
     if (empty($name)) {
-        array_push($errors, "Name is required");
-    } elseif (strlen($name) < 4) {
-        array_push($errors, "Name needs to be longer than 4 characters");
+        $errors[] = "Name is required";
+    } elseif (strlen($name) < 2) {
+        $errors[] = "Name needs to be longer than 2 characters";
     } elseif (!ctype_alnum($name)) {
-        array_push($errors, "Name can't have special characters");
+        $errors[] = "Name can't have special characters";
     } elseif (strlen($name) > 16) {
-        array_push($errors, "Name can't be longer than 16 characters");
+        $errors[] = "Name can't be longer than 16 characters";
     }
 
     if (empty($email)) {
-        array_push($errors, "Email is required");
+        $errors[] = "Email is required";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        array_push($errors, "Email adress is not valid");
+        $errors[] = "Email adress is not valid";
     }
-    
+
+    $stmt = $pdo->prepare("SELECT email FROM Users WHERE email=?");
+    $stmt->execute([$email]);
+    $user_email = $stmt->fetch();
+    if ($user_email) {
+        $errors[] = "Email adress is already being used";
+    }
+
     if (empty($password)) {
-        array_push($errors, "Password is required");
+        $errors[] = "Password is required";
     } elseif (strlen($password) < 6) {
-        array_push($errors, "Password needs to be longer than 6 characters");
+        $errors[] = "Password needs to be longer than 6 characters";
     } elseif (!ctype_alnum($password)) {
-        array_push($errors, "Password can't have special characters");
+        $errors[] = "Password can't have special characters";
     } elseif (strlen($password) > 30) {
-        array_push($errors, "Password can't be longer than 30 characters");
+        $errors[] = "Password can't be longer than 30 characters";
     }
-    
+
     if ($password != $password2) {
-        array_push($errors, "The two passwords do not match");
-    }   
+        $errors[] = "The two passwords do not match";
+    }
+
+
+    if (count($errors) == 0) {
+        $sql = "INSERT INTO Users (names, email, password) VALUES (?,?,?)";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$name, $email, $password]);
+
+        $_SESSION['user'] = $name;
+        $_SESSION['userEmail'] = $email;
+        header('Location:goal.php');
+        exit;
+    }
 }
