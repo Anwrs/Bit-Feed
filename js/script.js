@@ -1,4 +1,5 @@
 
+
   $(document).on("click",".close",function (){
       $('.modal').css('display','none');
     });
@@ -13,21 +14,6 @@ $(document).on("click","#addItem", function (){
     $('.modal').css('display','block');
 });
 
-  //
-  // $(document).on("click","#addItem1",function (){
-  //     // $('ul').append('<li>Item</li>');
-  //     // $( "li" ).addClass( "editable" );
-  //     // $( "li" ).addClass("ui-state-default");
-  //     // alert("hdvhde");
-  //   });
-
-
-$(document).on("mousedown",function() {
-  $(".sortableList").sortable({
-      connectWith: "#li_drag",
-      revert: true
-  });
-});
 
 var update = function(e) {
     var name = $('#modal_dialog #li_val').val();
@@ -38,19 +24,28 @@ $('.save').click(update);
 
 $(document).on("click","li",function (){
       $('.modal_li').css('display','block');
+      var test = $(this).text();
+      alert(test);
 });
 
-// var renew = function(e) {
-//   var new = $('#modal_dialog #update_val').val();
-//   var that $(this);
-//   var currentText = that.text();
-//   $(currentText).val(that);
-// };
-// $('.update_val').click(renew);
+
+$(document).on("click",".update",function (){
+    $('.modal_li').css('display','none');
+  });
+
+
+var renew = function(e) {
+  var name = $('#modal_update #update_val').val();
+  var that = $(this);
+  var currentText = that.text();
+  $(currentText).val(name);
+};
+
+$('.update').click(renew);
 
 
 $(document).on('click','.add_Column',function (){
-  var $newDiv= $('<div class="container"><div id="title"><h3 class="editable">Title</h3><button type="button" id="addItem" name="button">+</button></div><ul  id="sortable" class="connectedSortable" ></div>');
+  var $newDiv= $('<div class="container"><div id="title"><h3 class="editable" id="textq" datatitle-editable>Title</h3><button type="button"  id="addItem" name="button">+</button></div><ul   id="sortable" class="connectedSortable"></div>');
   $('.containment').append($newDiv);
 
   $('ul').sortable({
@@ -58,6 +53,8 @@ $(document).on('click','.add_Column',function (){
     cursor: 'pointer'
   });
 });
+
+
 
 $(function () {
   $("ul").sortable({
@@ -68,34 +65,42 @@ $(function () {
 
 
 
-// $(document).ready(function() {
-//     $(document).on("click",".editable", function (){
-//         var that = $(this);
-//         // if (that.find('input').length > 0) {
-//         //     return;
-//         // }
-//         var currentText = that.text();
-//
-//         // var input = $('#li_val').val(currentText)
-//         // .css({
-//         //     'position': 'absolute',
-//         //     top: '0px',
-//         //     left: '0px',
-//         //     width: that.width(),
-//         //     height: that.height(),
-//         //     opacity: 0.9,
-//         //     padding: '10px'
-//         // });
-//
-//         $(this).append(input);
-//
-//         $(document).click(function(event) {
-//             if(!$(event.target).closest('.editable').length) {
-//                 if ($input.val()) {
-//                     that.text($input.val());
-//                 }
-//                 that.find('input').remove();
-//             }
-//         });
-//     });
-// });
+
+$('body').on('click', '[data-editable]', function(){
+
+  var $el = $(this);
+
+  var $input = $('<input/>').val( $el.text() );
+  $el.replaceWith( $input );
+
+  var save = function(){
+    var $p = $('<h1 data-editable />').text( $input.val() );
+    $input.replaceWith( $p );
+  };
+   $("#placeholder").css({'position':"absolute"});
+
+  /**
+    We're defining the callback with `one`, because we know that
+    the element will be gone just after that, and we don't want
+    any callbacks leftovers take memory.
+    Next time `p` turns into `input` this single callback
+    will be applied again.
+  */
+  $input.one('blur', save).focus();
+
+});
+
+$('body').on('click', '[datatitle-editable]', function(){
+
+  var $el = $(this);
+
+  var $input = $('<input/>').val( $el.text() );
+  $el.replaceWith( $input );
+
+  var save = function(){
+    var $p = $('<h3 datatitle-editable />').text( $input.val() );
+    $input.replaceWith( $p );
+  };
+  $input.one('blur', save).focus();
+
+});
