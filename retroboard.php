@@ -31,21 +31,20 @@
             </ul>
         </nav>
     </header> -->
+    <div class="retro_title">
+      <h1 id="placeholder" data-editable>Title</h1>
+    </div>
     <main id="main">
-      <div class="retro_title">
-        <h1 id="placeholder" data-editable>Title</h1>
-      </div>
   <div class="modal fade" tabindex="-1" role="dialog" id="modal_dialog" style="display:none">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Create Item</h4>
       </div>
       <div class="modal-body">
-        <p>Show Input value option</p>
+        <p>Title</p>
         <input type="text" name="subject" value="" id="li_val"placeholder="subject....">
-        <p>Team Members</p>
-        <h6>select memebers</h6>
+        <!-- <p>Assign</p> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
@@ -62,10 +61,14 @@
             <h4 class="modal-title">Update Li</h4>
           </div>
           <div class="modal-body">
-            <p>Show Input value option</p>
+            <!-- <p>Show Input value option</p> -->
             <input type="text" name="subject" value="" id="update_val"placeholder="subject....">
-            <p>Team Members</p>
-            <h6>select memebers</h6>
+            <!-- <p>Team Members</p> -->
+            <p>Assign</p>
+            <ul>
+              <li>Members</li>
+            </ul>
+            <!-- <h6>select memebers</h6> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
@@ -75,26 +78,27 @@
       </div>
     </div>
       <div class="containment">
-            <div class="container">
-              <div id="title">
-                <h3 class="editable" id="textq" datatitle-editable>Title</h3>
-                <button type="button"  id="addItem" name="button">+</button>
-              </div>
-              <ul   id="sortable" class="connectedSortable">
-            </div>
-            <div class="container">
-              <div id="title">
-                <h3 class="editable" id="textq" datatitle-editable>Title</h3>
-                <button type="button"  id="addItem" name="button">+</button>
-              </div>
-              <ul   id="sortable" class="connectedSortable">
-            </div>
 
+
+
+            <!-- <div class="container">
+              <div id="title">
+                <h3 class="editable" id="textq" datatitle-editable>Title</h3>
+                <div class="handlers">
+                <button type="button"  id="addItem" name="button">+</button>
+                <button type="button"  id="deleteItem" name="button">x</button>
+              </div>
+              </div>
+              <ul   id="sortable" class="connectedSortable">
+            </div> -->
+
+
+
+          </div>
             <div class="add_Column">
               <button type="button" name="button" id="column">+</button>
             </div>
-        </div>
-
+            
     </main>
     <script type="text/javascript" src="js/script.js"></script>
   </body>
