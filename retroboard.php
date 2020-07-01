@@ -2,18 +2,27 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-        <link rel="stylesheet" href="css/retro.css">
+        <link rel="stylesheet" href="css/retro.css" type="text/css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script   type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="   crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!-- <script type="text/javascript" src="js/script.js"></script> -->
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
          <!-- <link rel="stylesheet" href="/r"> -->
          <link href="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title></title>
   </head>
+  <style>
+  .card-container> div.newItem{
+    padding: 0px;
+    height: 30px;
+    bottom: 0;
+    background-color: red;
+    display: inline-block;
+    width: 100%;
+  }
+  </style>
   <body id="retro_style body_save">
     <header>
         <nav class="nav">
@@ -33,87 +42,69 @@
             </ul>
         </nav>
     </header>
+
+
+<?php
+require_once "connection.php";
+$projectName = "Project";
+$library = new library();
+$contents = $library->getAllTblContents();
+var_dump($contents);
+ ?>
+
+
     <div class="retro_title">
-      <h1 id="placeholder" data-editable>Title</h1>
+      <input type="text" name="" value="" placeholder="text" id="placeholder">
     </div>
     <main id="main">
-  <!-- <div class="modal fade" tabindex="-1" role="dialog" id="modal_dialog" style="display:none">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Create Item</h4>
-      </div>
-      <div class="modal-body">
-        <p>Title</p>
-        <input type="text" name="subject" value="" id="li_val"placeholder="subject....">
-        <!-- <p>Assign</p> -->
-      <!-- </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
-        <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-      <div class="modal_li fade" tabindex="-1" role="dialog" id="modal_update" style="display:none">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Update Li</h4>
+
+      <div class="retro-board">
+        <?php
+        if(!empty($contents)){
+        foreach ($contents as $statusRow) {
+          $taskResult = $library->InsertColumnIdAndContent(intval($statusRow["container_id"]),$projectName);
+          // $liUpdate = $library->setItemToContainerId(intval($statusRow["container_id"]));
+         ?>
+        <div class="card-container">
+          <div class="card-header">
+            <span class="card-header-text"><?php echo $statusRow['container_name'] ?> </span>
           </div>
-          <div class="modal-body">
-            <input type="text" name="subject" value="" id="update_val"placeholder="subject....">
-            <p>Assign</p>
-            <ul>
-              <li>Members</li>
+          <ul class="sortable ui-sortable"
+            id="sort<?php echo $statusRow['container_id']  ?>"
+            data-status-id=" <?php echo $statusRow['container_id'] ?>">
+        <?php
+        if(! empty($taskResult)){
+            foreach($taskResult as $taskRow) {
+         ?>
+             <li class="text-row ui-sortable-handle"
+             data-task-id=" <?php echo $taskRow['items_id'] ?>"><?php echo $taskRow['title'] ?></li>
+
+           <?php
+              }
+         }
+            ?>
             </ul>
+          <div class="newItem">
+            <button type="button"  id="addItem" name="button">+ Add new Card</button>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
-            <button type="button"  class="btn btn-primary create_item update">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
-      <div class="containment">
-        <div class="container_card" id="cardcount1">
-          <div id="title">
-            <form class="card_title"  autocomplete="off" action="index.html" method="post">
-              <input type="text" autocomplete="off" placeholder="text here" id="inputText">
-              <!-- <input type="text" name="" value="" class="gh"> -->
-
-            </form>
-            <div class="btn-group dropright">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ...
-            </button>
-            <div class="dropdown-menu">
-              <!-- Dropdown menu links -->
-              defgrvhb
-            </div>
-          </div>
-            </div>
-            <ul id="sortable1" class="sortable connectedSortable"></ul>
-              <div class="handlers">
-                <button type="button"  id="addItem" name="button">+ Add new Card</button>
-              </div>
         </div>
+        <?php
+      }
+    }
+      ?>
 
 
       </div>
       <div class="add_Column">
       <button type="button" name="button" id="column">+</button>
       </div>
-      <!-- <div id="mySelector"> -->
+
 
       </div>
     </main>
-    <script type="text/javascript" src="js/script.js">
-
-
-
-    </script>
+    <script type="text/javascript" src="script.js">
+    // </script>
   </body>
 </html>
