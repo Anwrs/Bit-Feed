@@ -295,14 +295,54 @@ ul {
     border: #666 2px dashed;
 }
 
+
+
+.modal ,.modal_li{
+  position: absolute;
+  z-index: 99;
+  left: 50%;
+  top: 50%;
+  /* border: 2px solid black; */
+  margin-top: -100px;
+  margin-left: -200px;
+  width: 400px;
+  height: 200px;
+  padding: 20px;
+  background-color: white;
+}
+
+.modal-title{
+  background-color: red;
+  text-align: center;
+}
+
+.modal-dialog , .modal-content{
+  height: 100%;
+}
+
+.modal-footer{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: fit-content;
+}
+
+.retro_title{
+  width: 100%;
+  /* position: absolute; */
+  display: block;
+  text-align: center;
+  height: 60px;
+}
+
 input[type="text"], textarea , input#inputText, input#addCard {
 
   background-color : transparent;
   line-height: normal;
   padding: 5px;
   width: 100%;
-  border: none;
-  outline: none;
+  /* border: none; */
+  /* outline: none; */
 }
 
 .card_title{
@@ -312,6 +352,33 @@ input#inputText:focus, input#addCard:focus{
   padding: 5px;
   border: 1px solid black;
   width: 100%;
+}
+
+.box{
+  padding: 20px;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  border: 2px solid black;
+  width: 600px;
+  height: 300px;
+}
+
+.box_header h2{
+  text-align: center;
+}
+
+.box_body{
+  padding: 30px;
+  height: 70%;
+}
+.box_footer{
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+}
+.box_footer button{
+  margin-right: 15px;
 }
 
 /* #placeholder{

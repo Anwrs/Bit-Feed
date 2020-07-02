@@ -29,6 +29,22 @@ class library
         return $result;
     }
 
+    function InsertNewCard($query,$container_clicked,$inputValue,$projectName)
+    {
+      $db_handle = new DBController();
+      $query = "INSERT INTO `tbl_items`(`items_id`, `title`, `project_name`) VALUES (:items_id, :title, :projectName)";
+      $result = $db_handle->insertNew($query,$container_clicked,$inputValue,$projectName);
+      return $result;
+    }
+
+    function NewColumn($title,$id)
+    {
+      $db_handle = new DBController();
+      $query = "INSERT INTO retroboard.tbl_name (`container_name`,`container_id`) VALUES (?,?)";
+      $result = $db_handle->insertColumn($query,$title,$id);
+      return $result;
+    }
+
 }
 
 

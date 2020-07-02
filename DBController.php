@@ -88,6 +88,23 @@ class DBController {
     //     $this->bindQueryParams($sql, $param_type, $param_value_array);
     //     $sql->execute();
     // }
+		function insertColumn($query,$title,$id)
+		{
+			$sth = $this->conn->prepare($query);
+			$sth->bindParam(1,$title,PDO::PARAM_STR);
+			$sth->bindParam(2,$id,PDO::PARAM_STR);
+			$sth->execute();
+		}
+
+
+		function insertNew($query,$container_clicked,$inputValue,$projectName){
+			// $projectName = "project";
+			$sth = $this->conn->prepare($query);
+					$sth->bindParam(':items_id',$container_clicked,PDO::PARAM_INT);
+					$sth->bindParam(':title',$inputValue,PDO::PARAM_INT);
+					$sth->bindParam(':projectName',$projectName,PDO::PARAM_INT);
+					$sth->execute();
+		}
 
     function update($query, $status_id, $task_id)
 		{

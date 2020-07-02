@@ -1,11 +1,11 @@
 $(document).ready(function(){
-
+alert("presence");
 
 // $('#inputText input').uniqueId();
 //
 // var count= 1;
 // var countcard= 1;
-$('button#addItem').unbind("click");
+// $('button#addItem').unbind("click");
 $('body').on('click','button#addItem',function(){
 //     var inputVal =$('#modal_dialog #li_val').val();
 //       if(inputVal === ""){
@@ -22,10 +22,44 @@ $('body').on('click','button#addItem',function(){
 //
 //       thisLi.append(liItem);
 //       name = $(that).val('');
+    // $('.modal').css('display','block');
+    alert("addddd");
 //
 });
+
+// function addItem() {
+//   alert("Bruhhhh");
+// }
+//
+// $("button#addItem").click( function(){
+//   alert("goodos");
+// });
+//
+// $(document).on("click","#addItem", function (){
+//     // $('.modal').css('display','block');
+//     alert("Test");
+// });
+
 //
 
+$("div.newItem").click(function() {
+  alert("eee");
+})
+
+$(document).on("click",".closed",function (){
+    $('.modal').css('display','none');
+    $('.modal_li').css('display','none');
+
+});
+
+$(document).on("click","#send",function (){
+      $('.modal').css('display','none');
+      $('.modal_li').css('display','none');
+});
+
+$(".clicked").click(function(){
+  alert("clicked");
+})
 
 function addItem() {
   var newValue = "Heeeey Guys";
