@@ -24,16 +24,20 @@ class DBController {
 
 
 
-    function getQuery($query) {
+    function getQuery($query)
+		{
         $result = $this->conn->query($query);
         return $result;
     }
 
 
-		function runBaseQuery($query) {
+		function runBaseQuery($query)
+		{
 				$sth = $this->conn->query($query);
-				if ($sth->rowCount() > 0) {
-						while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
+				if ($sth->rowCount() > 0)
+				{
+						while($row = $sth->fetch(PDO::FETCH_ASSOC))
+						{
 								$resultset[] = $row;
 						}
 				}
@@ -42,7 +46,8 @@ class DBController {
 
 
 
-    function runQuery($query,$position,$projectName) {
+    function runQuery($query,$position,$projectName)
+		{
         $sth = $this->conn->prepare($query);
 				$sth->bindParam(':items_id',$position,PDO::PARAM_INT);
 				$sth->bindParam(':project_name',$projectName,PDO::PARAM_INT);
@@ -53,31 +58,42 @@ class DBController {
             }
         }
 
-        if(!empty($resultset)) {
+        if(!empty($resultset))
+				{
             return $resultset;
         }
     }
 
-    function bindQueryParams($sql, $param_type, $param_value_array) {
-        $param_value_reference[] = & $param_type;
-        for($i=0; $i<count($param_value_array); $i++) {
-            $param_value_reference[] = & $param_value_array[$i];
-        }
-        call_user_func_array(array(
-            $sql,
-            'bind_param'
-        ), $param_value_reference);
-    }
 
-    function insert($query, $param_type, $param_value_array) {
-        $sql = $this->conn->prepare($query);
-        $this->bindQueryParams($sql, $param_type, $param_value_array);
-        $sql->execute();
-    }
+		// function updateContext($query, $newValue)
+		// {
+		// 		$sth = $this->conn->prepare($query);
+		// 		$sth->bindParam(':newValue',$newValue,PDO::PARAM_INT);
+		// 		$sth->execute();
+		// }
 
-    function update($query, $param_type, $param_value_array) {
+    // function bindQueryParams($sql, $param_type, $param_value_array) {
+    //     $param_value_reference[] = & $param_type;
+    //     for($i=0; $i<count($param_value_array); $i++) {
+    //         $param_value_reference[] = & $param_value_array[$i];
+    //     }
+    //     call_user_func_array(array(
+    //         $sql,
+    //         'bind_param'
+    //     ), $param_value_reference);
+    // }
+
+    // function insert($query, $param_type, $param_value_array) {
+    //     $sql = $this->conn->prepare($query);
+    //     $this->bindQueryParams($sql, $param_type, $param_value_array);
+    //     $sql->execute();
+    // }
+
+    function update($query, $status_id, $task_id)
+		{
         $sth = $this->conn->prepare($query);
-        $this->conn->bindParam($sth, $param_type, $param_value_array);
+				$sth->bindParam(':items_id',$status_id,PDO::PARAM_INT);
+				$sth->bindParam(':id',$task_id,PDO::PARAM_INT);
         $sth->execute();
     }
 }

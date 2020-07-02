@@ -6,9 +6,7 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!-- <script type="text/javascript" src="js/script.js"></script> -->
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-         <!-- <link rel="stylesheet" href="/r"> -->
          <link href="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title></title>
@@ -46,10 +44,9 @@
 
 <?php
 require_once "connection.php";
-$projectName = "Project";
+$projectName = "project";
 $library = new library();
 $contents = $library->getAllTblContents();
-var_dump($contents);
  ?>
 
 
@@ -64,22 +61,20 @@ var_dump($contents);
         if(!empty($contents)){
         foreach ($contents as $statusRow) {
           $taskResult = $library->InsertColumnIdAndContent(intval($statusRow["container_id"]),$projectName);
-          // $liUpdate = $library->setItemToContainerId(intval($statusRow["container_id"]));
          ?>
         <div class="card-container">
           <div class="card-header">
-            <span class="card-header-text"><?php echo $statusRow['container_name'] ?> </span>
+            <span class="card-header-text"><?php echo $statusRow['container_name']; ?> </span>
           </div>
           <ul class="sortable ui-sortable"
-            id="sort<?php echo $statusRow['container_id']  ?>"
-            data-status-id=" <?php echo $statusRow['container_id'] ?>">
+            id="sort<?php echo $statusRow['container_id']; ?>"
+            data-status-id="<?php echo $statusRow['container_id']; ?>">
         <?php
         if(! empty($taskResult)){
             foreach($taskResult as $taskRow) {
          ?>
              <li class="text-row ui-sortable-handle"
-             data-task-id=" <?php echo $taskRow['items_id'] ?>"><?php echo $taskRow['title'] ?></li>
-
+             data-task-id="<?php echo $taskRow['id']; ?>"><?php echo $taskRow['title']; ?></li>
            <?php
               }
          }
@@ -104,7 +99,28 @@ var_dump($contents);
 
       </div>
     </main>
+
+    <script type="text/javascript">
+    $( function() {
+        var url = 'edit-status.php';
+        $('ul[id^="sort"]').sortable({
+            connectWith: ".sortable",
+            receive: function (e, ui) {
+                var status_id = $(ui.item).parent(".sortable").data("status-id");
+                var task_id = $(ui.item).data("task-id");
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {status_id: status_id, task_id: task_id},
+                    success: function(response){
+                        }
+                });
+                }
+
+        }).disableSelection();
+        } );
+     </script>
     <script type="text/javascript" src="script.js">
-    // </script>
+    </script>
   </body>
 </html>

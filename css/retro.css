@@ -231,7 +231,8 @@ p.test{
 .card-container {
     width: 250px;
     margin-right: 8px;
-    background: #e2e4e6;
+    /* background: #e2e4e6; */
+    background-color: rgb(240, 240, 240,0.5);
     border-radius: 3px;
     display: inline-block;
     vertical-align: top;
@@ -347,7 +348,9 @@ button#popup:hover{
 
 }
 button#addItem{
-  background-color: rgb(210, 240, 240,0.5);
+  /* background-color: rgb(210, 240, 240,0.5);
+   */
+   background: #e2e4e6;
   border: none;
   color: white;
   padding: 4px 8px;
