@@ -48,6 +48,9 @@ require_once "connection.php";
 $projectName = "project";
 $library = new library();
 $contents = $library->getAllTblContents();
+$Items = $library->getAllItems();
+
+
  ?>
 
 
@@ -71,55 +74,15 @@ $contents = $library->getAllTblContents();
       </div>
     </div>
 
-    <!-- <div class="box fade" id="box_dialog">
-      <div class="box-dialog">
-        <div class="box-content">
-          <div class="box-header">
-            <h4 class="box-title">Create New Item</h4>
-            </div>
-            <div class="box-body">
-              <p>Title</p>
-              <input type="text" name="Subject" value="" id="li_val" placeholder="text....">
-            </div>
-            <div class="box-footer">
-              <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
-              <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
-            </div>
-          </div>
-
-        </div>
-
-      </div> -->
-    <!-- </div> -->
     <main id="main">
-<!--
-          <div class="modal fade" tabindex="-1" role="dialog" id="modal_dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Create Item</h4>
-                </div>
-                <div class="modal-body">
-                  <p>Title</p>
-                  <input type="text" name="subject" value="" id="li_val"placeholder="subject....">
-                  <!-- <p>Assign</p> -->
-                <!-- </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
-                  <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
       <div class="retro-board">
 
         <?php
         if(!empty($contents)){
         foreach ($contents as $statusRow) {
           $taskResult = $library->InsertColumnIdAndContent(intval($statusRow["container_id"]),$projectName);
-          var_dump(sizeof($contents));
-
+          $nums = intval($statusRow["container_id"]);
+            var_dump($nums);
          ?>
         <div class="card-container">
           <div class="card-header">
@@ -140,9 +103,8 @@ $contents = $library->getAllTblContents();
             ?>
             </ul>
           <div class="newItem">
-            <button type="button"  id="addItem" name="button">+ Add new Card</button>
+            <button type="button"  id="addItem" name="button" class="id_all"data-container-id="<?php echo $statusRow['container_id']?>">+ Add new Card</button>
           </div>
-
         </div>
         <?php
       }
@@ -181,27 +143,17 @@ $contents = $library->getAllTblContents();
         }).disableSelection();
         } );
 
-        // $('#column').click(function(){
-        //
-        //   // $.post('update-status.php',value: value, function(data)
-        //   // {
-        //   //     alert(successfully)
-        //   // });
-        //
-        // });
+
 
         $(document).on("click","#column",function(){
           alert("actiiiooon");
           var url ="update-status.php";
           var value = $('#textVal').val();
-          var id = <?= sizeof($contents)+1?>;
+          var id = <?= sizeof($contents)+1 ?>;
           alert(id);
           console.log(value);
           alert(value);
-         //  $.post('update-status.php',value: value, function(data)
-         // //   // {
-         //       alert(successfully)
-         //   });
+
          $.ajax({
              type: "POST",
              url: url,
@@ -212,6 +164,31 @@ $contents = $library->getAllTblContents();
          });
 
         });
+
+          $(".id_all").each(function(){
+            var $this = $(this);
+            $this.on("click",function(){
+              alert($(this).data('container-id'));
+              var url ="add-item.php";
+              var value = $('#textVal').val();
+              var clickedId =$(this).data('container-id');
+              var id = <?= sizeof($Items)+1 ?>;
+              alert(id);
+              alert(value);
+
+                       $.ajax({
+                           type: "POST",
+                           url: url,
+                           data: {value: value,id:id, clicked_id:clickedId},
+                           success: function(response){
+                             alert(response);
+                               }
+                       });
+            });
+          });
+          // alert(dataId);
+
+        // });
 
 
           $(document).on("click",".closed",function (){

@@ -97,12 +97,14 @@ class DBController {
 		}
 
 
-		function insertNew($query,$container_clicked,$inputValue,$projectName){
-			// $projectName = "project";
-			$sth = $this->conn->prepare($query);
-					$sth->bindParam(':items_id',$container_clicked,PDO::PARAM_INT);
-					$sth->bindParam(':title',$inputValue,PDO::PARAM_INT);
-					$sth->bindParam(':projectName',$projectName,PDO::PARAM_INT);
+		function insertNew($query,$title,$id,$items_id){
+			$projectName = "project";
+					$sth = $this->conn->prepare($query);
+					$sth->bindParam(1,$id,PDO::PARAM_INT);
+					$sth->bindParam(2,$items_id,PDO::PARAM_STR);
+					$sth->bindParam(3,$title,PDO::PARAM_STR);
+					$sth->bindParam(4,$projectName,PDO::PARAM_STR);
+
 					$sth->execute();
 		}
 

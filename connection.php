@@ -21,6 +21,14 @@ class library
        return $result;
     }
 
+    function getAllItems()
+    {
+      $db_handle = new DBController();
+      $query = "SELECT * FROM retroboard.tbl_items";
+       $result = $db_handle->runBaseQuery($query);
+      return $result;
+   }
+
     function editTaskStatus($status_id, $task_id)
     {
       $db_handle = new DBController();
@@ -29,11 +37,11 @@ class library
         return $result;
     }
 
-    function InsertNewCard($query,$container_clicked,$inputValue,$projectName)
+    function InsertNewCard($title,$id,$items_id)
     {
       $db_handle = new DBController();
-      $query = "INSERT INTO `tbl_items`(`items_id`, `title`, `project_name`) VALUES (:items_id, :title, :projectName)";
-      $result = $db_handle->insertNew($query,$container_clicked,$inputValue,$projectName);
+      $query = "INSERT INTO retroboard.tbl_items(`id`,`items_id`, `title`, `project_name`) VALUES (?,?,?,?)";
+      $result = $db_handle->insertNew($query,$title,$id,$items_id);
       return $result;
     }
 
@@ -44,6 +52,14 @@ class library
       $result = $db_handle->insertColumn($query,$title,$id);
       return $result;
     }
+
+    // function NewItem($title,$id,$items_id)
+    // {
+    //   $db_handle = new DBController();
+    //   $query = "INSERT INTO ``";
+    //   $result = $db_handle->insertItem($query,$title,$items_id);
+    //   return $result
+    // }
 
 }
 
