@@ -21,6 +21,10 @@
     display: inline-block;
     width: 100%;
   }
+
+  .box{
+    display: none;
+  }
   </style>
   <body id="retro_style body_save">
     <header>
@@ -74,6 +78,23 @@ $Items = $library->getAllItems();
       </div>
     </div>
 
+    <div class="box">
+      <div class="box_content">
+        <div class="box_header">
+          <h2>Update Item</h2>
+        </div>
+        <div class="box_body">
+          <h4>Title</h4>
+          <textarea name="context" id="context" rows="3" cols="30"></textarea>
+            <!-- <input type="text" name="context"  id="context" placeholder="text...." required> -->
+        </div>
+        <div class="box_footer">
+          <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
+          <button type="button" class="closed"  id="deleteItem">Close</button>
+        </div>
+      </div>
+    </div>
+
     <main id="main">
       <div class="retro-board">
 
@@ -81,8 +102,8 @@ $Items = $library->getAllItems();
         if(!empty($contents)){
         foreach ($contents as $statusRow) {
           $taskResult = $library->InsertColumnIdAndContent(intval($statusRow["container_id"]),$projectName);
-          $nums = intval($statusRow["container_id"]);
-            var_dump($nums);
+          // $nums = intval($statusRow["container_id"]);
+            // var_dump($nums);
          ?>
         <div class="card-container">
           <div class="card-header">
@@ -98,6 +119,7 @@ $Items = $library->getAllItems();
              <li class="text-row ui-sortable-handle"
              data-task-id="<?php echo $taskRow['id']; ?>"><?php echo $taskRow['title']; ?></li>
            <?php
+           echo $taskRow['id'];
               }
          }
             ?>
@@ -147,13 +169,14 @@ $Items = $library->getAllItems();
 
         $(document).on("click","#column",function(){
           alert("actiiiooon");
+          $('.box').show();
           var url ="update-status.php";
-          var value = $('#textVal').val();
           var id = <?= sizeof($contents)+1 ?>;
-          alert(id);
-          console.log(value);
-          alert(value);
-
+          // alert(id);
+          // console.log(value);
+    $('.save').on("click",function(){
+      var value = $('#textVal').val();
+      // alert(value);
          $.ajax({
              type: "POST",
              url: url,
@@ -161,44 +184,61 @@ $Items = $library->getAllItems();
              success: function(response){
                alert(response);
                  }
-         });
+               });
+             });
+           });
 
+        $("li").each(function(){
+          var $this = $(this);
+          $this.on("click",function(){
+            $('.box').show();
+            var id = $(this).data('task-id');
+            var url ="update-item.php";
+            // var value = $('#context').val();
+            $('.save').on("click",function(){
+              var value = $("textarea#context").val();
+              alert(id);
+              alert(value);
+
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: {value:value,id:id},
+              success: function(response){
+                alert(response);
+                }
+              });
+            });
+          });
         });
 
           $(".id_all").each(function(){
             var $this = $(this);
             $this.on("click",function(){
-              alert($(this).data('container-id'));
+              $('.box').show();
+              // alert($(this).data('container-id'));
               var url ="add-item.php";
-              var value = $('#textVal').val();
               var clickedId =$(this).data('container-id');
               var id = <?= sizeof($Items)+1 ?>;
-              alert(id);
-              alert(value);
-
-                       $.ajax({
-                           type: "POST",
-                           url: url,
-                           data: {value: value,id:id, clicked_id:clickedId},
-                           success: function(response){
-                             alert(response);
-                               }
-                       });
+                $('.save').on("click",function(){
+                  var value = $('#textVal').val();
+               $.ajax({
+                   type: "POST",
+                   url: url,
+                   data: {value: value,id:id, clicked_id:clickedId},
+                   success: function(response){
+                     // alert(response);
+                       }
+                     });
+              });
             });
           });
-          // alert(dataId);
-
-        // });
-
 
           $(document).on("click",".closed",function (){
               $('.box').css('display','none');
-              // $('.modal_li').css('display','none');
-
           });
 
           $(document).on("click","#send",function (){
-                // $('.modal_li').css('display','none');
                 $('.box').css('display','none');
           });
 

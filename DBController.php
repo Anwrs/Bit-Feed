@@ -88,6 +88,14 @@ class DBController {
     //     $this->bindQueryParams($sql, $param_type, $param_value_array);
     //     $sql->execute();
     // }
+
+
+		function updateItem($query,$title,$id){
+				$sth = $this->conn->prepare($query);
+				$sth->bindParam(":title",$title,PDO::PARAM_STR);
+				$sth->bindParam(":id",$id,PDO::PARAM_STR);
+				$sth->execute();
+		}
 		function insertColumn($query,$title,$id)
 		{
 			$sth = $this->conn->prepare($query);

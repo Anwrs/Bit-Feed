@@ -53,6 +53,13 @@ class library
       return $result;
     }
 
+    function UpdateCard($title,$id){
+      $db_handle = new DBController();
+      $query = "UPDATE retroboard.tbl_items SET `title` = :title WHERE `id`=:id";
+      $result = $db_handle->updateItem($query,$title,$id);
+      return $result;
+    }
+
     // function NewItem($title,$id,$items_id)
     // {
     //   $db_handle = new DBController();
