@@ -1,3 +1,11 @@
+<?php
+if (isset($_SESSION['user'])) {
+    header("Location:goal.php");
+    exit;
+}
+include 'config/login/login_handler.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +43,7 @@
                         <label for="password">Password</label>
                         <input type="password" name="password" placeholder="Password..">
 
-                        <button type="submit">Log in</button>
+                        <button type="submit" name='login'>Log in</button>
 
                         <p>You don't have an <span style='color: #9946b3'>account?</span></p>
                         <a href="register.php">Register here</a>
@@ -44,8 +52,18 @@
             </div>
 
             <div class="right-side-container">
-
-                <img src="images/login.png" alt="target-girl">
+                <?php if (count($errors) > 0) : ?>
+                    <div class="error-box">
+                        <img src="images/error.png" alt="error">
+                        <?php foreach ($errors as $error) : ?>
+                            <ul>
+                                <li><?= $error ?></li>
+                            </ul>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else : ?>
+                    <img src="images/login.png" alt="login-screen">
+                <?php endif; ?>
             </div>
         </div>
     </div>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +24,11 @@
                 <ul class="nav-link">
                     <li><a href="index.php"><i class="fas fa-bars"></i> Home</a></li>
                     <li><a href="contact.php"><i class="far fa-comments"></i> Contact</a></li>
-                    <li><a href="login.php"><i class="far fa-bookmark"></i> Login</a></li>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                        <li><a href="goal.php"><i class="fas fa-award"></i> Goals</a></li>
+                    <?php else : ?>
+                        <li><a href="login.php"><i class="far fa-bookmark"></i> Login</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
 
@@ -39,7 +47,7 @@
                 </div>
 
                 <div class="front-right">
-                    <img class="group-svg" src="SVG/group.svg" alt="Group svg">
+                    <img class="group-svg" src="SVG/Group.svg" alt="Group svg">
                 </div>
             </div>
         </div>

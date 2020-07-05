@@ -208,3 +208,23 @@ body {
     background-color: #9946b3;
     transform: scale(1.05);
 }
+
+.error-box {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    color: red;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.error-box img {
+    width: 40%;
+    margin: 0 25%;
+}
+
+.error-box ul {
+    margin: 3% 15%;
+}

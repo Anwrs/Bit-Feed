@@ -1,5 +1,10 @@
 <?php
 include 'config/register/register_handler.php';
+
+if (isset($_SESSION['user'])) {
+    header("Location:goal.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +49,7 @@ include 'config/register/register_handler.php';
 
                         <label for="password2">Repeat password</label>
                         <input type="password" name="password2" placeholder="Repeat password..">
-                        
+
                         <button type="submit" name='submit'>Create account</button>
                     </form>
                 </div>
