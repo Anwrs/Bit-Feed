@@ -328,10 +328,10 @@ ul {
 }
 
 .retro_title{
+  padding-left: 50px;
   width: 100%;
-  /* position: absolute; */
-  display: block;
-  text-align: center;
+  display: flex;
+  align-items: baseline;
   height: 60px;
 }
 
@@ -354,7 +354,7 @@ input#inputText:focus, input#addCard:focus{
   width: 100%;
 }
 
-.box{
+.update-item,.add-column{
   padding: 20px;
   display: flex;
   /* justify-content: center; */

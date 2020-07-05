@@ -22,8 +22,14 @@
     width: 100%;
   }
 
-  .box{
+  .update-item,.add-column{
+    background-color: white;
     display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
   }
   </style>
   <body id="retro_style body_save">
@@ -59,10 +65,10 @@ $Items = $library->getAllItems();
 
 
     <div class="retro_title">
-      <input type="text" name="" value="" placeholder="text" id="placeholder">
+      <h1 class="editable" id="lblname">title</h1>
     </div>
 
-    <div class="box">
+    <div class="add-column">
       <div class="box_content">
         <div class="box_header">
           <h2>New Column</h2>
@@ -78,7 +84,7 @@ $Items = $library->getAllItems();
       </div>
     </div>
 
-    <div class="box">
+    <div class="update-item">
       <div class="box_content">
         <div class="box_header">
           <h2>Update Item</h2>
@@ -86,7 +92,7 @@ $Items = $library->getAllItems();
         <div class="box_body">
           <h4>Title</h4>
           <textarea name="context" id="context" rows="3" cols="30"></textarea>
-            <!-- <input type="text" name="context"  id="context" placeholder="text...." required> -->
+            <input type="text" name="context"  id="context" placeholder="text...." required>
         </div>
         <div class="box_footer">
           <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
@@ -107,7 +113,7 @@ $Items = $library->getAllItems();
          ?>
         <div class="card-container">
           <div class="card-header">
-            <span class="card-header-text"><?php echo $statusRow['container_name']; ?> </span>
+            <span class="card-header-text editable" id="lblname"><?php echo $statusRow['container_name']; ?> </span>
           </div>
           <ul class="sortable ui-sortable"
             id="sort<?php echo $statusRow['container_id']; ?>"
@@ -169,7 +175,7 @@ $Items = $library->getAllItems();
 
         $(document).on("click","#column",function(){
           alert("actiiiooon");
-          $('.box').show();
+          $('.add-column').show();
           var url ="update-status.php";
           var id = <?= sizeof($contents)+1 ?>;
           // alert(id);
@@ -191,10 +197,12 @@ $Items = $library->getAllItems();
         $("li").each(function(){
           var $this = $(this);
           $this.on("click",function(){
-            $('.box').show();
+            $('.update-item').show();
             var id = $(this).data('task-id');
             var url ="update-item.php";
             // var value = $('#context').val();
+            var clickedvalue =$(this).text();
+            alert(clickedvalue);
             $('.save').on("click",function(){
               var value = $("textarea#context").val();
               alert(id);
@@ -215,13 +223,15 @@ $Items = $library->getAllItems();
           $(".id_all").each(function(){
             var $this = $(this);
             $this.on("click",function(){
-              $('.box').show();
+              $('.update-item').show();
               // alert($(this).data('container-id'));
               var url ="add-item.php";
               var clickedId =$(this).data('container-id');
+
               var id = <?= sizeof($Items)+1 ?>;
                 $('.save').on("click",function(){
-                  var value = $('#textVal').val();
+                  var value = $('textarea#context').val();
+                  alert(value);
                $.ajax({
                    type: "POST",
                    url: url,
@@ -235,12 +245,59 @@ $Items = $library->getAllItems();
           });
 
           $(document).on("click",".closed",function (){
-              $('.box').css('display','none');
+              $('.update-item').css('display','none');
+              $('.add-column').css('display','none');
+
           });
 
           $(document).on("click","#send",function (){
                 $('.box').css('display','none');
           });
+          //
+          // $("span.card-header-text").on("click",function(e){
+          //   // $(document).on("dblclick",$this,function(e){
+          //     alert("heeyyyy");
+          //
+          // });
+
+          // $(document).on("dblclick","span.card-header-text",function (){
+                // $('.box').css('display','none');
+
+                // $(document).on("dblclick","span.card-header-text",function (){
+                  $(".editable").each(function () {
+                    // alert("double");
+                      var label = $(this);
+
+                      label.after("<input type = 'text' style='display:none'/>");
+
+                      var textbox = $(this).next();
+
+
+                      textbox[0].name = this.id.replace("lbl", "txt");
+
+                      textbox.val(label.html());
+
+                      label.on("dblclick",function (){
+                        // alert("hiii");
+                        $(this).hide();
+                        $(this).next().show();
+                    });
+
+
+                      textbox.focusout(function () {
+                          $(this).hide();
+                          $(this).prev().html($(this).val());
+                          $(this).prev().show();
+                      });
+                  });
+                // });
+
+
+          // });
+
+
+
+
 
 
           });
