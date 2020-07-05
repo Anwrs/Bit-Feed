@@ -9,62 +9,79 @@
          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
          <link rel="stylesheet" href="/resources/demos/style.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+               <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+         <script   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="   crossorigin="anonymous"></script>
     <title></title>
   </head>
   <body>
-    <header id="header">
-      <h1>BitFeed</h1>
-      <img src="images/logo/logo.png">
-    </header>
+    <!-- <header>
+        <nav class="nav">
+            <img class="nav-img" src="images/bitwhite.png" alt="bit-logo">
 
-    <main>
-
+            <ul class="nav-link">
+                <li><span><i class="fas fa-user"></i> <?= $_SESSION['user'] ?></span></li>
+                <li><a href="index.php"><i class="fas fa-bars"></i> Home</a></li>
+                <li>
+                    <a href="#">
+                        <form id="logout" action="goal.php" method="post">
+                            <button type="submit" name='logout'><i class="far fa-bookmark"></i> Log out</button>
+                        </form>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header> -->
+    <div class="retro_title">
+      <h1 id="placeholder" data-editable>Title</h1>
+    </div>
+    <main id="main">
   <div class="modal fade" tabindex="-1" role="dialog" id="modal_dialog" style="display:none">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
+        <h4 class="modal-title">Create Item</h4>
       </div>
       <div class="modal-body">
-        <p>Show Input value option</p>
-        <p>Team Members</p>
-        <h6>select memebers</h6>
+        <p>Title</p>
+        <input type="text" name="subject" value="" id="li_val"placeholder="subject....">
+        <!-- <p>Assign</p> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
-        <button type="button" id="submit" class="btn btn-primary create_item">Save changes</button>
+        <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-      <hr>
-      <div class="containment">
-            <div class="container1">
-              <div id="title">
-                <h3 class="editable" id="textq">Title</h3>
-                <button type="button"  id="addItem1" name="button">+</button>
-              </div>
-              <ul   id="sortable1" class="connectedSortable">
-            </div>
-            <div class="container2">
+    </div>
+  </div>
+</div>
 
-              <div id="title">
-                <h3 class="editable">Title</h3>
-                <button type="button" id="addItem2" name="button">+</button>
-              </div>
-              <ul id="sortable2" class="connectedSortable" >
-            </div>
-            <div class="container3">
-              <div id="title">
-                <h3 class="editable">Title</h3>
-                <button type="button" id="addItem3" name="button">+</button>
-              </div>
-              <ul  id="sortable3" class="connectedSortable" >
-            </div>
-
+      <div class="modal_li fade" tabindex="-1" role="dialog" id="modal_update" style="display:none">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Update Li</h4>
+          </div>
+          <div class="modal-body">
+            <!-- <p>Show Input value option</p> -->
+            <input type="text" name="subject" value="" id="update_val"placeholder="subject....">
+            <!-- <p>Team Members</p> -->
+            <p>Assign</p>
+            <ul>
+              <li>Members</li>
+            </ul>
+            <!-- <h6>select memebers</h6> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
+            <button type="button"  class="btn btn-primary create_item update">Save changes</button>
+          </div>
         </div>
-      <hr>
+      </div>
+    </div>
+      <div class="containment">
+          </div>
+            <div class="add_Column">
+              <button type="button" name="button" id="column">+</button>
+            </div>
     </main>
     <script type="text/javascript" src="js/script.js"></script>
   </body>

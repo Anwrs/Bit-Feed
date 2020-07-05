@@ -24,29 +24,24 @@
         <div class="container">
             <div class="left-side-container">
                 <div class="title">
-                    <h1>Send us a Message</h1>
+                    <h1>Contact us</h1>
                 </div>
 
                 <div class="field">
 
                     <form class="field-form" action="login.php" method="post">
 
-                      <label for="name">Name</label>
-                      <input type="name" name="name" placeholder="name..">
-
                       <label for="email">email</label>
                       <input type="email" name="email" placeholder="Email..">
 
-                      <label for="company">Company</label>
-                      <input type="company" name="company" placeholder="message..">
 
+                        <label for="name">Name</label>
+                        <input type="name" name="name" placeholder="name..">
 
-                      <label for="message">Message</label>
-                      <input type="message" name="message" placeholder="message..">
+                        <label for="password">Message</label>
+                        <input type="message" name="message" id="message" placeholder="message..">
 
-
-
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        <button type="submit">Send</button>
 
                     </form>
                 </div>
