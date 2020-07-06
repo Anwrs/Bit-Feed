@@ -12,24 +12,19 @@ body{
 
 .wrapper{
   height: 100vh;
-  /* border: 2px solid black; */
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
 }
 
 .container{
-  /* border: 2px solid red; */
   height: 70%;
   width: 70%;
   display: flex;
   border-radius: 40px;
-  /* background-color: red; */
 }
 
 .c_left{
-  /* border: 2px solid blue; */
   width: 70%;
   padding: 50px;
   height: 100%;
@@ -145,7 +140,6 @@ textarea:focus , input:focus{
 
 .info_user{
 width: 100%;
-/* display: flex; */
 }
 
 .field{
@@ -272,33 +266,3 @@ div label {
 
 
 }
-
-/* @media screen and (min-width:1336px){
-  .container{
-    width: 50%;
-    height: 50%;
-}
-    .field{
-      height: 20%;
-    }
-
-    .left-side-container{
-      width: 40%;
-    }
-
-    .info_user{
-      width: 80%;
-    }
-.c_left{
-  padding: 10px;
-}
-
-    #message{
-      height: 20%;
-    }
-
-    #subject{
-      height: 20px;
-    }
-
-} */

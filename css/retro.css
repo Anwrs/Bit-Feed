@@ -100,18 +100,16 @@ header {
 
 .retro-board{
   display: flex;
+  margin-right: 10px;
 }
 
 
 
 
 .add_Column{
-  padding-top: 70px;
   display: flex;
   align-items: baseline;
   height: 20px;
-  width: fit-content;
-
 }
 
 
@@ -132,7 +130,7 @@ header {
     padding: 5px;
     font-size: 11px;
     min-width: 100px;
-    background-color: white;
+    background-color: #dde1e7;
     box-shadow: 1.9px 4px lightgrey;
     min-height: 15px;
     border-radius: 3px;
@@ -140,10 +138,13 @@ header {
 
 
 .card-container> div.newItem{
-  height: fit-content;
-  padding: 0px;
+  padding: 10px;
   height: fit-content;
   bottom: 0;
+  background-color: transparent;
+  background-color: none;
+  border-radius: 8px;
+  border: none;
 }
 
 
@@ -207,38 +208,62 @@ p.test{
   height: 60px;
 }
 
-.dropdown {
+.bars {
   position: relative;
-  display: inline-block;
+  display: flex;
+  width: 40px;
+  box-shadow:  -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94,104,121,.288);
+  background-color: #f5f5f5;
+  border-radius: 4px;
 }
 
-.dropdown-content {
+.bars h5{
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.bars-content a {
+  text-decoration: none;
+}
+.bars:hover{
+  box-shadow:  inset -3px -3px 7px #ffffff73, inset 3px 3px 5px rgba(94,104,121,.288);
+}
+.bars-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  background-color: #f9f9f999;
+  min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
   z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
+.bars:hover .bars-content {
+  margin-left:40px ;
   display: block;
 }
 
+.delete{
+  position: relative;
+  display: inline-block;
+  background-color: red;
+}
 
 
 .card-container {
-    width: 250px;
-    margin-right: 8px;
-    /* background: #e2e4e6; */
-    background-color: rgb(240, 240, 240,0.5);
-    border-radius: 3px;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 0.9em;
-    height: fit-content;
-}
+  border-radius: 6px;
+  padding: 10px;
+  width: 250px;
+  margin-right: 20px;
+  background-color: rgb(240, 240, 240,0.5);
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0.9em;
+  height: fit-content;
+  box-shadow:  -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94,104,121,.288);
+  }
 
 .card-container:last-child {
     margin-right: 0px;
@@ -250,12 +275,20 @@ p.test{
     padding: 10px 10px 0px 10px;
     box-sizing: border-box;
     border-radius: 3px;
-    display: block;
+    /* display: block; */
     font-weight: bold;
+    display: flex;
+    /* flex-direction: column; */
 }
 
 .card-header-text {
-    display: block;
+    display: flex;
+    width: 80%;
+}
+
+.delete{
+  display: flex;
+  width: 20px;
 }
 ul.sortable.ui-sortable{
   min-height: 127px;
@@ -357,11 +390,14 @@ input#inputText:focus, input#addCard:focus{
 .update-item,.add-column{
   padding: 20px;
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
   border: 2px solid black;
   width: 600px;
   height: 300px;
+}
+
+#column:hover{
+  box-shadow: inset -4px -4px 7px #ffffff73, inset 4px 4px 5px rgba(94,104,121,.288);
 }
 
 .box_header h2{
@@ -381,17 +417,11 @@ input#inputText:focus, input#addCard:focus{
   margin-right: 15px;
 }
 
-/* #placeholder{
-  position: absolute;
-  width:fit-content;
-  width: 100%;
-  text-align: center;
-  font-size: 25px;
-  height: auto;
-  top: 30%;
-} */
 
-
+.edit{
+  width: 40px;
+  display: none;
+}
 #mySelector{
   height: 20px;
   border: 2px solid black;
@@ -399,9 +429,7 @@ input#inputText:focus, input#addCard:focus{
 }
 
 
-button#addCard{
 
-}
 button#popup{
   background-color: rgb(240, 240, 240,0.5);
   border: none;
@@ -415,9 +443,7 @@ button#popup:hover{
 
 }
 button#addItem{
-  /* background-color: rgb(210, 240, 240,0.5);
-   */
-   background: #e2e4e6;
+  background-color: #e2e4e6;
   border: none;
   color: white;
   padding: 4px 8px;
@@ -427,12 +453,15 @@ button#addItem{
   font-size: 16px;
   width: 100%;
   outline: none;
+  border-radius: 6px;
 }
-
-
 button#addItem:hover{
-  background-color: rgb(240, 240, 240,0.9);
+  background: #D3D3D3;
+  box-shadow: inset -3px -3px 7px #e2e4e673, inset 3px 3px 5px rgba(94,104,121,.288);
 }
+
+
+
 button#deleteItem {
   background-color: #f44336;
   border: none;

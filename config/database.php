@@ -1,9 +1,9 @@
 <!-- Hier gaan we database linken -->
 <?php
-$host = 'localhost:3306';
-$db   = 'bit-feed';
-$user = 'bit-feed';
-$pass = 'o6ai9r9G7K8GzX7pNNnquYCz34H7dv';
+$host = 'localhost';
+$db   = 'retroboard';
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

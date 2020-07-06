@@ -41,13 +41,6 @@
 
             ?>
             <div class="field">
-                  <!-- <form action="process.php" method="POST">
-                    <input type="text" name="username" placeholder="username" class="form-contrl mb-2">
-                    <input type="email" name="email" placeholder="email" class="form-contrl mb-2">
-                    <input type="text" name="subject" placeholder="subject" class="form-contrl mb-2">
-                    <textarea name="msg" class="form-control" placeholder="Write Message"rows="8" cols="80"></textarea>
-                    <button type="submit" class="btn btn-succes" name="btn-send"id="btn_send">Send</button>
-                  </form> -->
                     <form action="https://formspree.io/bittool.us@gmail.com" method="POST">
                     <input type="text" name="name" placeholder="name">
                     <input type="email" name="_replyto" placeholder="email">

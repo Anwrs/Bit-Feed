@@ -5,7 +5,6 @@ $library = new library();
 
 $title = $_POST["value"] ?? null;
 $id = $_POST["id"] ?? null;
-
 $result = $library->UpdateCard($title,$id);
 
  ?>

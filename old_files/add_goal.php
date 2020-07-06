@@ -44,7 +44,6 @@
       <div class="modal-body">
         <p>Title</p>
         <input type="text" name="subject" value="" id="li_val"placeholder="subject....">
-        <!-- <p>Assign</p> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
@@ -61,14 +60,11 @@
             <h4 class="modal-title">Update Li</h4>
           </div>
           <div class="modal-body">
-            <!-- <p>Show Input value option</p> -->
             <input type="text" name="subject" value="" id="update_val"placeholder="subject....">
-            <!-- <p>Team Members</p> -->
             <p>Assign</p>
             <ul>
               <li>Members</li>
             </ul>
-            <!-- <h6>select memebers</h6> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>

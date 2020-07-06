@@ -13,37 +13,27 @@
       <div class="container">
           <div class="c_left">
             <h2>Send us a Message</h2>
-
             <div class="field">
-
                 <form class="field-form" action="#" method="post">
-
                   <div class="info_user">
-                    <div class="info">
-                      <label for="email">Email</label>
-                      <input type="email" name="email" id="email" placeholder="Email..">
-
-                    </div>
-
-                  <div class="info">
-                    <label for="name"> Your Name</label>
-                    <input type="name" name="name" placeholder="name..">
-
-                  </div>
-
+                      <div class="info">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Email..">
+                      </div>
+                      <div class="info">
+                        <label for="name"> Your Name</label>
+                        <input type="name" name="name" placeholder="name..">
+                      </div>
                   </div>
 
                   <div class="message">
                     <label for="subject">Subject</label>
                     <textarea id="subject" name="subject" placeholder="Write something.."></textarea>
                   </div>
-                  <!-- <button id="btn_send" type="submit">Send</button> -->
 
                   <div class="btn_send">
-
                     <button type="button" class="btn btn-info"><i class="fas fa-paper-plane"></i>
-
-</button>
+                    </button>
                   </div>
 
                 </form>

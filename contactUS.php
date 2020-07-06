@@ -20,7 +20,6 @@
                 <input type="text" name="Subject" placeholder="Subject" class="form-contrl mb-2">
                 <textarea name="msg" class="form-control" placeholder="Write Message"rows="8" cols="80"></textarea>
                 <button type="button" class="btn btn-succes" name="btn-send">Send</button>
-                <!-- <input type="text" name="Username" placeholder="user NAme" class="form-contrl mb-2"> -->
               </form>
 
             </div>

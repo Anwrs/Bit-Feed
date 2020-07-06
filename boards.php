@@ -57,10 +57,8 @@
                  $( '.showSwitch' ).hide();
                    $("#text").show();
             } else{
-            // $(".cancel_board").click(function(){
                 $("#text").hide();
                 $( '.showSwitch' ).show();
-            // });
             }
     });
        $(".cancel_board").click(function(){
@@ -68,10 +66,8 @@
                    $( '.showSwitch' ).hide();
                      $("#text").show();
               } else{
-              // $(".cancel_board").click(function(){
                   $("#text").hide();
                   $( '.showSwitch' ).show();
-              // });
               }
             });
 

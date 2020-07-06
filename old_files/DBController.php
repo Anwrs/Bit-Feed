@@ -33,7 +33,6 @@ class DBController {
 
 		function runBaseQuery($query)
 		{
-			echo $query;
 				$sth = $this->conn->query($query);
 				if ($sth->rowCount() > 0)
 				{
@@ -74,12 +73,11 @@ class DBController {
 				$sth->bindParam(":id",$id,PDO::PARAM_STR);
 				$sth->execute();
 		}
-		function insertColumn($query,$title,$projectName)
+		function insertColumn($query,$title,$id)
 		{
 			$sth = $this->conn->prepare($query);
 			$sth->bindParam(1,$title,PDO::PARAM_STR);
-			$sth->bindParam(2,$projectName,PDO::PARAM_STR);
-
+			$sth->bindParam(2,$id,PDO::PARAM_STR);
 			$sth->execute();
 		}
 
@@ -127,13 +125,5 @@ class DBController {
 							return $resultset;
 						}
 				}
-
-
-				function startQuery($query)
-				{
-					echo $query;
-						$result = $this->conn->query($query);
-						return;
-					}
 }
 ?>

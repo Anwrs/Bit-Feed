@@ -7,7 +7,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-          <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
          <link href="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
          <script type="text/javascript" src="js/script.js"></script>
@@ -40,7 +39,7 @@
 
             <ul class="nav-link">
               <li><a href="boards.php">Boards</a> </li>
-                <li><span><i class="fas fa-user"></i> <?= $_SESSION['user'] ?? null ?></span></li>
+                <li><span><i class="fas fa-user"></i> session user here</span></li>
                 <li><a href="index.php"><i class="fas fa-bars"></i> Home</a></li>
                 <li>
                     <a href="#">
@@ -53,24 +52,21 @@
         </nav>
     </header>
 
-
+<!-- 
 <?php
-require_once "Dbmanagement.php";
+require_once "dbHandlers/Dbmanagement.php";
+$projectName = "project";
 $library = new library();
-$link = $_GET['link'];
-$name = $library->getProjectname($link);
-      if(!empty($name)){
-      foreach ($name as $new) {
-        $projectName= $new['goal'];
-        $contents = $library->getAllTblContents($projectName);
-        $Items = $library->getAllItems($projectName);
-      ?>
+$contents = $library->getAllTblContents();
+$Items = $library->getAllItems();
+
+
+ ?> -->
+
+
     <div class="retro_title">
-      <h1 class="editable" id="lblname"><?php echo $projectName ?></h1>
+      <h1 class="editable" id="lblname">title</h1>
     </div>
-<?php
-  }}
-   ?>
 
     <div class="add-column">
       <div class="box_content">
@@ -108,51 +104,40 @@ $name = $library->getProjectname($link);
     <main id="main">
       <div class="retro-board">
 
-        <?php
+        <!-- <?php
         if(!empty($contents)){
         foreach ($contents as $statusRow) {
           $taskResult = $library->InsertColumnIdAndContent(intval($statusRow["container_id"]),$projectName);
-         ?>
+          // $nums = intval($statusRow["container_id"]);
+            // var_dump($nums);
+         ?> -->
         <div class="card-container">
           <div class="card-header">
-            <span class="card-header-text editable" id="lblname" data-status-id="<?php echo $statusRow['container_id']; ?>"><?php echo $statusRow['container_name']; ?> </span>
-            <div class="edit">
-              <button type="button" name="button" class="reject">X</button>
-              <button type="button" name="button" class="accept">V</button>
-            </div>
-            <div class="bars">
-              <h5>...</h5>
-              <div class="bars-content">
-              <a href=""><h6> Edit</h6></a>
-              <a href=""><h6>Delete</h6></a>
-              </div>
-            </div>
+            <span class="card-header-text editable" id="lblname">Container name here  </span>
           </div>
           <ul class="sortable ui-sortable"
             id="sort<?php echo $statusRow['container_id']; ?>"
             data-status-id="<?php echo $statusRow['container_id']; ?>">
-        <?php
-
+        <!-- <?php
         if(! empty($taskResult)){
             foreach($taskResult as $taskRow) {
-         ?>
+         ?> -->
              <li class="text-row ui-sortable-handle"
-             data-task-id="<?php echo $taskRow['id']; ?>"><?php echo $taskRow['title']; ?></li>
-           <?php
+             data-task-id="<?php echo $taskRow['id']; ?>">Title insert php here</li>
+           <!-- <?php
            // echo $taskRow['id'];
-         echo $statusRow['container_id'];
               }
          }
-            ?>
+            ?> -->
             </ul>
           <div class="newItem">
-            <button type="button"  id="addItem" name="button" class="id_all"data-container-id="<?php echo $statusRow['container_id']?>">+ Add new Card</button>
+            <button type="button"  id="addItem" name="button" class="id_all"data-container-id="container_id here">+ Add new Card</button>
           </div>
         </div>
-        <?php
+        <!-- <?php
       }
     }
-      ?>
+      ?> -->
 
 
       </div>
@@ -168,7 +153,7 @@ $name = $library->getProjectname($link);
 
     $(document).ready(function(){
     $( function() {
-        var url = 'edit-status.php';
+        var url = 'dbHandlers/edit-status.php';
         $('ul[id^="sort"]').sortable({
             connectWith: ".sortable",
             receive: function (e, ui) {
@@ -191,10 +176,9 @@ $name = $library->getProjectname($link);
         $(document).on("click","#column",function(){
           alert("actiiiooon");
           $('.add-column').show();
-          var url ="update-status.php";
-          // var id = <?= sizeof($contents)+1 ?>;
+          var url ="dbHandlers/update-status.php";
+          var id = <?= sizeof($contents)+1 ?>;
           // alert(id);
-            var name= "<?= $projectName ?>";
           // console.log(value);
     $('.save').on("click",function(){
       // $(".retro-board").load(location.href + " .retro-board");
@@ -203,7 +187,7 @@ $name = $library->getProjectname($link);
          $.ajax({
              type: "POST",
              url: url,
-             data: {value: value,project_name:name},
+             data: {value: value, id:id},
              success: function(response){
                alert(response);
                  }
@@ -216,10 +200,12 @@ $name = $library->getProjectname($link);
           $this.on("click",function(){
             $('.update-item').show();
             var id = $(this).data('task-id');
-            var url ="update-item.php";
+            var url ="dbHandlers/update-item.php";
+            // var value = $('#context').val();
             var clickedvalue =$(this).text();
+            // alert(clickedvalue);
             $('.save').on("click",function(){
-              $('.edit').show();
+              // $(".retro-board").load(location.href + " .retro-board");
               var value = $("textarea#context").val();
               // alert(id);
               // alert(value);
@@ -239,53 +225,27 @@ $name = $library->getProjectname($link);
           $(".id_all").each(function(){
             var $this = $(this);
             $this.on("click",function(){
-              var name= "<?= $projectName ?>";
-              alert(name);
               $('.update-item').show();
-              var url ="add-item.php";
+              // alert($(this).data('container-id'));
+              var url ="dbHandlers/add-item.php";
               var clickedId =$(this).data('container-id');
+
+              var id = <?= sizeof($Items)+1 ?>;
                 $('.save').on("click",function(){
+                  // $(".retro-board").load(location.href + " .retro-board");
                   var value = $('textarea#context').val();
                   // alert(value);
                $.ajax({
                    type: "POST",
                    url: url,
-                   data: {value: value, clicked_id:clickedId, project_name:name},
+                   data: {value: value,id:id, clicked_id:clickedId},
                    success: function(response){
-                     alert(response);
+                     // alert(response);
                        }
                      });
               });
             });
           });
-
-
-          $(".card-header-text").each(function(){
-            var $this = $(this);
-            $this.on("dblclick",function(){
-              $(".edit").show();
-              // $('.update-item').show();
-              var url ="update-title.php";
-              var id_container = $(this).data('status-id');
-               $('.accept').on("click",function(){
-                 alert("actiiioooooooooon");
-                     // var value = $('textarea#context').val();
-                 var valueText = $this.text();
-                 alert(valueText);
-                 alert(id_container);
-
-              $.ajax({
-                  type: "POST",
-                  url: url,
-                  data: {valueText: valueText, id_container:id_container},
-                  success: function(response){
-                    alert(response);
-                      }
-                    });
-                  });
-              });
-            });
-
 
           $(document).on("click",".closed",function (){
               $('.update-item').css('display','none');
@@ -300,13 +260,14 @@ $name = $library->getProjectname($link);
                   $(".editable").each(function () {
                     // alert("double");
                       var label = $(this);
-                      label.after("<input type = 'text' style='display:none' id='header-text' />");
+
+                      label.after("<input type = 'text' style='display:none'/>");
 
                       var textbox = $(this).next();
 
 
                       textbox[0].name = this.id.replace("lbl", "txt");
-                      // if
+
                       textbox.val(label.html());
 
                       label.on("dblclick",function (){
@@ -323,8 +284,7 @@ $name = $library->getProjectname($link);
                       });
                   });
 
-
-
+                  // $(".retro-board").load(location.href + " .retro-board");
 
 
           });

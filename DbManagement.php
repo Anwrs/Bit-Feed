@@ -13,18 +13,18 @@ class library
     }
 
 
-     function getAllTblContents()
+     function getAllTblContents(string $projectName)
      {
        $db_handle = new DBController();
-       $query = "SELECT * FROM retroboard.tbl_name";
+       $query = "SELECT * FROM retroboard.tbl_name WHERE project_name='$projectName'";
         $result = $db_handle->runBaseQuery($query);
        return $result;
     }
 
-    function getAllItems()
+    function getAllItems($projectName)
     {
       $db_handle = new DBController();
-      $query = "SELECT * FROM retroboard.tbl_items";
+      $query = "SELECT * FROM retroboard.tbl_items WHERE project_name='$projectName'";
        $result = $db_handle->runBaseQuery($query);
       return $result;
    }
@@ -37,19 +37,20 @@ class library
         return $result;
     }
 
-    function InsertNewCard($title,$id,$items_id)
+    function InsertNewCard($title,$items_id,$projectName)
     {
       $db_handle = new DBController();
-      $query = "INSERT INTO retroboard.tbl_items(`id`,`items_id`, `title`, `project_name`) VALUES (?,?,?,?)";
-      $result = $db_handle->insertNew($query,$title,$id,$items_id);
+      $query = "INSERT INTO retroboard.tbl_items(`items_id`, `title`, `project_name`) VALUES (?,?,?)";
+      $result = $db_handle->insertNew($query,$title,$items_id,$projectName);
       return $result;
     }
 
-    function NewColumn($title,$id)
+    function NewColumn($title,$projectName)
     {
+      // echo $projectName;
       $db_handle = new DBController();
-      $query = "INSERT INTO retroboard.tbl_name (`container_name`,`container_id`) VALUES (?,?)";
-      $result = $db_handle->insertColumn($query,$title,$id);
+      $query = "INSERT INTO retroboard.tbl_name (`container_name`,`project_name`) VALUES (?,?)";
+      $result = $db_handle->insertColumn($query,$title,$projectName);
       return $result;
     }
 
@@ -60,14 +61,21 @@ class library
       return $result;
     }
 
-    // function NewItem($title,$id,$items_id)
-    // {
-    //   $db_handle = new DBController();
-    //   $query = "INSERT INTO ``";
-    //   $result = $db_handle->insertItem($query,$title,$items_id);
-    //   return $result
-    // }
+    function UpdateHeader($title,$id)
+    {
+      $db_handle = new DBController();
+      $query = "UPDATE retroboard.tbl_name SET container_name =? WHERE container_id =?";
+      $result = $db_handle->updateTitle($query,$title,$id);
+      return $result;
+    }
 
+    function getProjectname($link)
+    {
+      $db_handle = new DBController();
+      $query = "SELECT `goal` FROM retroboard.goals WHERE goal_id=$link";
+      $result = $db_handle->runBaseQuery($query);
+      return $result;
+    }
 }
 
 

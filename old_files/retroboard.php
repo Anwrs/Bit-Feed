@@ -56,21 +56,29 @@
 
 <?php
 require_once "Dbmanagement.php";
+$projectName= $_POST["project_name"]?? null;
 $library = new library();
+$contents = $library->getAllTblContents();
+$Items = $library->getAllItems();
+
 $link = $_GET['link'];
-$name = $library->getProjectname($link);
-      if(!empty($name)){
-      foreach ($name as $new) {
-        $projectName= $new['goal'];
-        $contents = $library->getAllTblContents($projectName);
-        $Items = $library->getAllItems($projectName);
-      ?>
+echo $link;
+function executeQuery()
+{
+  $link = $_GET['link'];
+  echo $link;
+  $stmt = $pdo->prepare("SELECT `goal` FROM retroboard.goals WHERE goal_id=?");
+  $stmt->execute([$link]);
+  $user = $stmt->fetch();
+  var_dump($user);
+}
+
+ ?>
+
+
     <div class="retro_title">
       <h1 class="editable" id="lblname"><?php echo $projectName ?></h1>
     </div>
-<?php
-  }}
-   ?>
 
     <div class="add-column">
       <div class="box_content">
@@ -132,7 +140,6 @@ $name = $library->getProjectname($link);
             id="sort<?php echo $statusRow['container_id']; ?>"
             data-status-id="<?php echo $statusRow['container_id']; ?>">
         <?php
-
         if(! empty($taskResult)){
             foreach($taskResult as $taskRow) {
          ?>
@@ -140,7 +147,6 @@ $name = $library->getProjectname($link);
              data-task-id="<?php echo $taskRow['id']; ?>"><?php echo $taskRow['title']; ?></li>
            <?php
            // echo $taskRow['id'];
-         echo $statusRow['container_id'];
               }
          }
             ?>
@@ -167,6 +173,35 @@ $name = $library->getProjectname($link);
     <script type="text/javascript" >
 
     $(document).ready(function(){
+      // response.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
+      // var inset = <?= $link ?>;
+      // if(inset){
+      //   // console.log(inset);
+      //   // window.setInterval(function(){
+      //     var link = <?= $link ?>;
+      //     var url = 'getProjectname.php';
+      //     $.ajax({
+      //         type: "POST",
+      //         url: url,
+      //         data: {link:link},
+      //         success: function(response){
+      //           alert(response);
+      //           console.log(response);
+      //           console.log(link);
+      //           // console.log(response);
+      //           clearInterval();
+      //             }
+      //     });
+      //     // clearInterval();
+      //
+      //   // }, 10000);
+      //   // alert("notnul");
+      // }else{
+      //   alert("trippp");
+      // }
+
+
+
     $( function() {
         var url = 'edit-status.php';
         $('ul[id^="sort"]').sortable({
@@ -192,9 +227,8 @@ $name = $library->getProjectname($link);
           alert("actiiiooon");
           $('.add-column').show();
           var url ="update-status.php";
-          // var id = <?= sizeof($contents)+1 ?>;
+          var id = <?= sizeof($contents)+1 ?>;
           // alert(id);
-            var name= "<?= $projectName ?>";
           // console.log(value);
     $('.save').on("click",function(){
       // $(".retro-board").load(location.href + " .retro-board");
@@ -203,7 +237,7 @@ $name = $library->getProjectname($link);
          $.ajax({
              type: "POST",
              url: url,
-             data: {value: value,project_name:name},
+             data: {value: value, id:id},
              success: function(response){
                alert(response);
                  }
@@ -239,8 +273,6 @@ $name = $library->getProjectname($link);
           $(".id_all").each(function(){
             var $this = $(this);
             $this.on("click",function(){
-              var name= "<?= $projectName ?>";
-              alert(name);
               $('.update-item').show();
               var url ="add-item.php";
               var clickedId =$(this).data('container-id');
@@ -250,7 +282,7 @@ $name = $library->getProjectname($link);
                $.ajax({
                    type: "POST",
                    url: url,
-                   data: {value: value, clicked_id:clickedId, project_name:name},
+                   data: {value: value, clicked_id:clickedId},
                    success: function(response){
                      alert(response);
                        }
