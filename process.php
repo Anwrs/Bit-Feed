@@ -4,9 +4,10 @@
   if (isset($_POST['btn-send'])) {
     // code...
     // echo "Workng";
-    $UserName = $_POST['username']."\n";
-    $Email = "From:".$_POST['email']."\n";
-    $Msg = $_POST['msg']."\n";
+    $UserName = $_POST['username'];
+    $Email = "From:".$_POST['email'];
+    $Subject = $_POST['subject'];
+    $Msg = $_POST['msg'];
 
 
 

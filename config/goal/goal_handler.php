@@ -1,65 +1,53 @@
 <?php
-// session_start();
 include 'config/database.php';
 
 $goal = "";
 $email = $_SESSION['userEmail'];
 $date = "";
-$public = "";
-$type = "";
-$full = false;
-$groupperson1 = "";
-$groupperson2 = "";
-$groupperson3 = "";
-$groupperson4 = "";
+$invite = '';
 
 if (isset($_POST['createGoal'])) {
     $goal = $_POST['goal'];
     $date = $_POST['date'];
-    $public = $_POST['publicView'];
     $goal_id = rand(1, 5000);
-    $type = $_POST['typeGoal'];
+    $invite = $_POST['inviteUsers'];
 
-    if ($type == 'Group') {
-        $groupPerson1 = $_POST['groupPerson1'];
-        $groupPerson2 = $_POST['groupPerson2'];
-        $groupPerson3 = $_POST['groupPerson3'];
-        $groupPerson4 = $_POST['groupPerson4'];
+    $sql = 'INSERT INTO Goals (goal_id, goal, email, date, checked) VALUES (?,?,?,?,?)';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$goal_id, $goal, $email, $date, "YES"]);
 
-            $sql = 'SELECT goal_id, goal, email, date, public FROM Goals WHERE email = ?';
+    foreach ($invite as $user) {
+        if ($user == $_SESSION['userEmail']) {
+
+        } else {
+            $sql = 'INSERT INTO Goalsinvite (goal_id, creator, goal, goaluser, checked) VALUES (?,?,?,?,?)';
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$email]);
-            $count = $stmt->rowCount();
-
-            if ($count < 20) {
-                $sql = 'INSERT INTO Goals (goal_id, goal, email, date, public, type, groupPerson1, groupPerson2, groupPerson3, groupPerson4) VALUES (?,?,?,?,?,?,?,?,?,?)';
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([$goal_id, $goal, $email, $date, $public, $type, $groupPerson1, $groupPerson2, $groupPerson3, $groupPerson4]);
-
-                header('location:goal.php');
-                exit;
-            } else {
-                $full = true;
-            }
-
-    } else {
-
-            $sql = 'SELECT goal_id, goal, email, date, public FROM Goals WHERE email = ?';
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$email]);
-            $count = $stmt->rowCount();
-
-            if ($count < 20) {
-                $sql = 'INSERT INTO Goals (goal_id, goal, email, date, public, type) VALUES (?,?,?,?,?,?)';
-                $stmt = $pdo->prepare($sql);
-                $stmt->execute([$goal_id, $goal, $email, $date, $public, $type]);
-
-                header('location:goal.php');
-                exit;
-            } else {
-                $full = true;
-            }
+            $stmt->execute([$goal_id, $email, $goal, $user, "NO"]);
+        }
     }
+
+header('location:goal.php');
+exit;
+}
+
+$pergoal = "";
+$startperdate = "";
+$endperdate = "";
+$pergoaltext = "";
+
+if (isset($_POST['createPergoal'])) {
+    $pergoal = $_POST['pergoal'];
+    $startperdate = $_POST['startperdate'];
+    $endperdate = $_POST['endperdate'];
+    $pergoal_id = rand(1, 5000);
+    $pergoaltext = $_POST['pergoaltext'];
+
+    $sql = 'INSERT INTO PersonalGoals (persgoal_id, goal, goaltext, email, startdate, enddate, complete) VALUES (?,?,?,?,?,?,?)';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$pergoal_id, $pergoal, $pergoaltext, $email, $startperdate, $endperdate, "NO"]);
+
+header('location:personalgoal.php');
+exit;
 }
 
 if (isset($_POST['logout'])) {
@@ -81,8 +69,34 @@ if (isset($_POST['logout'])) {
 if (isset($_POST['deleteGoal'])) {
     $idGoal = $_POST['deleteGoal'];
 
-    $stmt = $pdo->prepare('DELETE FROM Goals WHERE id = ?');
+    $stmt = $pdo->prepare('DELETE FROM Goals WHERE goal_id = ?');
     $stmt->execute([$idGoal]);
+    $user = $stmt->fetch();
+
+    $stmt = $pdo->prepare('DELETE FROM Goalsinvite WHERE goal_id = ?');
+    $stmt->execute([$idGoal]);
+    $user = $stmt->fetch();
+
+    header('location:goal.php');
+    exit;
+}
+
+if (isset($_POST['acceptMessage'])) {
+    $idGoal = $_POST['acceptMessage'];
+
+    $sql = "UPDATE Goalsinvite SET checked = ? WHERE goal_id = ? AND goaluser = ?";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute(["YES", $idGoal, $_SESSION['userEmail']]);
+
+    header('location:goal.php');
+    exit;
+}
+
+if (isset($_POST['declineMessage'])) {
+    $idGoal = $_POST['declineMessage'];
+
+    $stmt = $pdo->prepare('DELETE FROM Goalsinvite WHERE goal_id = ? AND goaluser = ?');
+    $stmt->execute([$idGoal, $_SESSION['userEmail']]);
     $user = $stmt->fetch();
 
     header('location:goal.php');

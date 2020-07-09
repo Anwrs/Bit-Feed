@@ -6,7 +6,7 @@ body{
   background-repeat: no-repeat;
   font-family: "Ubunto", sans-serif;
   position:relative;
-  width: 100%;
+  width: 95%;
   height: 100%;
   position: relative;
 }
@@ -104,7 +104,11 @@ header {
 }
 
 
-
+.getTeam{
+  display: flex;
+  font-size: 12px;
+  color: white;
+}
 
 .add_Column{
   display: flex;
@@ -136,15 +140,25 @@ header {
     border-radius: 3px;
   }
 
+  .text-row{
+    display: flex;
+    justify-content: space-between;
+  }
+
+
 
 .card-container> div.newItem{
-  padding: 10px;
   height: fit-content;
   bottom: 0;
   background-color: transparent;
-  background-color: none;
+  background-color: darkgray;
   border-radius: 8px;
   border: none;
+  padding: 0px;
+  height: 30px;
+  bottom: 0;
+  display: inline-block;
+  width: 100%;
 }
 
 
@@ -164,7 +178,7 @@ ul{
   min-height: 60px;
   list-style-type: none;
   margin: 0;
-  padding: 50px 0 0 0;
+  padding: 20px 0 0 0;
   float: left;
   margin-right: 10px;
   display: flex;
@@ -173,8 +187,8 @@ ul{
   margin-bottom: 15px;
 }
 .sortable li {
-  margin: 0 5px 5px 5px;
-  padding: 5px;
+  /* margin: 0 5px 5px 5px; */
+  margin: 2px 0px 5px 0px;
   font-size: 11px;
   min-width: 100px;
   background-color: white;
@@ -194,75 +208,91 @@ li#li_style  {
   min-height: 25px;
   border-radius: 3px;
 }
-p.test{
-  height: 10px;
-}
-
-
 
 .retro_title{
-  display: flex;
-  justify-content: center;
+  height: 100px;
   flex-direction: column;
-  text-align: center;
-  height: 60px;
+  padding-left: 50px;
+  width: 100%;
+  align-items: baseline;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.header a{
+  padding-top: 10px;
+  color: grey;
+  box-shadow: box-shadow:  -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94,104,121,.288);
+}
+
+.links, .links a{
+  display: flex;
+  padding-right: 20px;
 }
 
 .bars {
-  position: relative;
-  display: flex;
   width: 40px;
+  height: 30px;
   box-shadow:  -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94,104,121,.288);
   background-color: #f5f5f5;
   border-radius: 4px;
+  margin-right: 20px;
 }
 
 .bars h5{
+  padding: 0px;
+  margin: 0px;
   width: inherit;
   display: flex;
   justify-content: center;
   font-weight: bold;
+  align-items: center;
+  height: 100%;
 }
 
-.bars-content a {
+ .bars-content h6{
   text-decoration: none;
+  font-weight: bold;
 }
 .bars:hover{
   box-shadow:  inset -3px -3px 7px #ffffff73, inset 3px 3px 5px rgba(94,104,121,.288);
 }
-.bars-content {
+.bars-content{
+  border: 2px solid black;
   display: none;
   position: absolute;
   background-color: #f9f9f999;
-  min-width: 140px;
+  min-width: 100px;
+  height: fit-content;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
+  text-align: center;
   z-index: 1;
 }
 
+.bars-content h6:hover{
+  color: red;
+  font-weight: bold;
+}
+
 .bars:hover .bars-content {
+  margin-top: -30px;
   margin-left:40px ;
   display: block;
 }
 
-.delete{
-  position: relative;
-  display: inline-block;
-  background-color: red;
-}
-
-
 .card-container {
   border-radius: 6px;
   padding: 10px;
-  width: 250px;
+  width: 220px;
   margin-right: 20px;
   background-color: rgb(240, 240, 240,0.5);
-  display: inline-block;
   vertical-align: top;
   font-size: 0.9em;
-  height: fit-content;
   box-shadow:  -3px -3px 7px #ffffff73, 3px 3px 5px rgba(94,104,121,.288);
+  height: fit-content;
   }
 
 .card-container:last-child {
@@ -271,27 +301,21 @@ p.test{
 
 
 .card-header {
-    width: 100%;
+    height: 30px;
     padding: 10px 10px 0px 10px;
-    box-sizing: border-box;
-    border-radius: 3px;
-    /* display: block; */
-    font-weight: bold;
     display: flex;
-    /* flex-direction: column; */
+    width: 100%;
+    justify-content: space-between;
 }
 
 .card-header-text {
+  padding-top: 5px;
     display: flex;
     width: 80%;
 }
 
-.delete{
-  display: flex;
-  width: 20px;
-}
 ul.sortable.ui-sortable{
-  min-height: 127px;
+  min-height: 100px;
 }
 
 ul.sortable {
@@ -326,87 +350,73 @@ ul {
     visibility: inherit !important;
     background: transparent;
     border: #666 2px dashed;
+    height: auto;
+    overflow: hidden;
 }
 
 
-
-.modal ,.modal_li{
-  position: absolute;
-  z-index: 99;
-  left: 50%;
-  top: 50%;
-  /* border: 2px solid black; */
-  margin-top: -100px;
-  margin-left: -200px;
-  width: 400px;
-  height: 200px;
-  padding: 20px;
-  background-color: white;
-}
-
-.modal-title{
-  background-color: red;
-  text-align: center;
-}
-
-.modal-dialog , .modal-content{
-  height: 100%;
-}
-
-.modal-footer{
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  height: fit-content;
-}
-
-.retro_title{
-  padding-left: 50px;
-  width: 100%;
-  display: flex;
-  align-items: baseline;
-  height: 60px;
-}
 
 input[type="text"], textarea , input#inputText, input#addCard {
-
+  outline: none;
+  margin: 0px;
   background-color : transparent;
   line-height: normal;
   padding: 5px;
-  width: 100%;
-  /* border: none; */
-  /* outline: none; */
+  width: 50%;
+  resize: none;
+}
+input#title-text{
+  margin-top: 30px;
+}
+
+.update{
+  display: none;
 }
 
 .card_title{
   width: 100%;
 }
-input#inputText:focus, input#addCard:focus{
+ input#addCard:focus{
   padding: 5px;
   border: 1px solid black;
   width: 100%;
 }
 
-.update-item,.add-column{
-  padding: 20px;
-  display: flex;
+
+
+.update-item,.add-column,.add-item,.edit-column{
   flex-direction: column;
-  border: 2px solid black;
-  width: 600px;
-  height: 300px;
+  width: 500px;
+  height: 200px;
+  background-color: white;
+  display: none;
+  position: fixed;
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
 
 #column:hover{
   box-shadow: inset -4px -4px 7px #ffffff73, inset 4px 4px 5px rgba(94,104,121,.288);
 }
-
+.box_header{
+  display: flex;
+  justify-content: space-between;
+}
+.box_header button{
+  height: fit-content;
+}
 .box_header h2{
-  text-align: center;
+  padding-left: 170px;
 }
 
 .box_body{
   padding: 30px;
-  height: 70%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
 }
 .box_footer{
   display: flex;
@@ -419,9 +429,11 @@ input#inputText:focus, input#addCard:focus{
 
 
 .edit{
-  width: 40px;
+  padding-left: 5px;
+  width: 80px;
   display: none;
 }
+
 #mySelector{
   height: 20px;
   border: 2px solid black;
@@ -437,6 +449,20 @@ button#popup{
   padding: 5px;
   width: 30px;
 }
+
+button.save_item, button.save_column, button.save_update_item{
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  outline: none;
+  border-radius: 6px;
+}
+
 
 button#popup:hover{
   background-color: rgb(240, 240, 240,1);
@@ -471,4 +497,26 @@ button#deleteItem {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+button.edit-li{
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.erase-item{
+  background-color: #f44336;
+  border: none;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

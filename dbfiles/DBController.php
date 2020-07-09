@@ -6,16 +6,14 @@ class DBController {
 	private $database = "bit-feed";
 	private $conn;
 
-    function __construct() {
-        $this->conn = $this->connectDB();
+		function __construct() {
+				$this->conn = $this->connectDB();
 	}
 
 	function connectDB() {
-
 				try {
-				$this->conn = new PDO("mysql:host =localhost,dbname=retroboard","root","");
+				$this->conn = new PDO("mysql:host=".$this->host.";dbname=retroboard;charset=utf8mb4","root","");
 						$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-						// echo "Connected successfully";
 				} catch (PDOException $e) {
 						echo "Connection failed: " . $e->getMessage();
 				}
@@ -24,36 +22,38 @@ class DBController {
 
 
 
+
     function getQuery($query)
 		{
-        $result = $this->conn->query($query);
-        return $result;
+      $result = $this->conn->query($query);
+      return $result;
     }
 
 
 		function runBaseQuery($query)
 		{
-			echo $query;
-				$sth = $this->conn->query($query);
-				if ($sth->rowCount() > 0)
-				{
-						while($row = $sth->fetch(PDO::FETCH_ASSOC))
-						{
-								$resultset[] = $row;
-						}
-				}
-				if(!empty($resultset)){
-					return $resultset;
-				}
+			if($query === null){
+				console.log($query."EMPTY VALUE");
+				alert($query);
+			}
+			$sth = $this->conn->query($query);
+			if ($sth->rowCount() > 0)
+			{
+					while($row = $sth->fetch(PDO::FETCH_ASSOC))
+					{
+							$resultset[] = $row;
+					}
+			}
+			if(!empty($resultset)){
+				return $resultset;
+			}
 		}
 
-
-
-    function runQuery($query,$position,$projectName)
+    function runQuery($query,$position,$projectId)
 		{
         $sth = $this->conn->prepare($query);
 				$sth->bindParam(':items_id',$position,PDO::PARAM_INT);
-				$sth->bindParam(':project_name',$projectName,PDO::PARAM_INT);
+				$sth->bindParam(':project_id',$projectId,PDO::PARAM_INT);
         $sth->execute();
         if ($sth->rowCount() > 0) {
             while($row = $sth->fetch(PDO::FETCH_ASSOC)) {
@@ -74,21 +74,21 @@ class DBController {
 				$sth->bindParam(":id",$id,PDO::PARAM_STR);
 				$sth->execute();
 		}
-		function insertColumn($query,$title,$projectName)
+		function insertColumn($query,$title,$projectName,$projectId)
 		{
 			$sth = $this->conn->prepare($query);
 			$sth->bindParam(1,$title,PDO::PARAM_STR);
 			$sth->bindParam(2,$projectName,PDO::PARAM_STR);
-
+			$sth->bindParam(3,$projectId,PDO::PARAM_STR);
 			$sth->execute();
 		}
 
 
-		function insertNew($query,$title,$items_id,$projectName){
+		function insertNew($query,$title,$items_id,$projectId){
 					$sth = $this->conn->prepare($query);
 					$sth->bindParam(1,$items_id,PDO::PARAM_STR);
 					$sth->bindParam(2,$title,PDO::PARAM_STR);
-					$sth->bindParam(3,$projectName,PDO::PARAM_STR);
+					$sth->bindParam(3,$projectId,PDO::PARAM_STR);
 					$sth->execute();
 		}
 
@@ -131,9 +131,8 @@ class DBController {
 
 				function startQuery($query)
 				{
-					echo $query;
 						$result = $this->conn->query($query);
 						return;
-					}
+				}
 }
 ?>

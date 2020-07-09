@@ -8,13 +8,32 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
          <link href="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
          <script type="text/javascript" src="js/script.js"></script>
-    <title>RetroBoard</title>
+    <title></title>
   </head>
   <style>
   </style>
   <body id="retro_style body_save">
+    <header>
+        <nav class="nav">
+            <img class="nav-img" src="images/bitwhite.png" alt="bit-logo">
+
+            <ul class="nav-link">
+              <li><a href="boards.php">Boards</a> </li>
+                <li><span><i class="fas fa-user"></i> <?= $_SESSION['user'] ?? null ?></span></li>
+                <li><a href="index.php"><i class="fas fa-bars"></i> Home</a></li>
+                <li>
+                    <a href="#">
+                        <form id="logout" action="goal.php" method="post">
+                            <button type="submit" name='logout'><i class="far fa-bookmark"></i> Log out</button>
+                        </form>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
 <?php
-include 'config/database.php';
 include 'dbfiles/DbManagement.php';
 $library = new library();
 $projectId = $_GET['link'];
@@ -30,25 +49,7 @@ if(isset($projectId)){
         $Items = $library->getAllItems($projectId);
       ?>
     <div class="retro_title">
-      <div class="header">
-        <h1 class="title_update project-text" id="lblname"><?php echo $projectName ?></h1>
-        <div class="links">
-          <a href="https://projects.bit-academy.nl/~bit-feed/index.php"><p>Home</p></a>
-          <a href="https://projects.bit-academy.nl/~bit-feed/goal.php"><p>Goals</p></a>
-        </div>
-      </div>
-      <div class="getTeam">
-        Team
-        <?php
-        $stmt = $pdo->prepare('SELECT goaluser FROM Goalsinvite WHERE goal_id = ?');
-        $stmt->execute([$projectId]);
-        $countinvites = $stmt->rowCount();
-        $invites = $stmt->fetchAll();
-        foreach ($invites as $message) :
-          ?>
-    | <?= $message['goaluser']?>
-        <?php endforeach; ?>
-      </div>
+      <h1 class="title_update project-text" id="lblname"><?php echo $projectName ?></h1>
     </div>
 <?php
   }}
@@ -57,15 +58,13 @@ if(isset($projectId)){
       <div class="box_content">
         <div class="box_header">
           <h2>New Column</h2>
-          <div class="">
-            <button type="button" class="closed"  id="deleteItem">X</button>
-          </div>
         </div>
         <div class="box_body">
             <input type="text" name="Subject" value="" id="textVal" placeholder="text...." required>
         </div>
         <div class="box_footer">
-          <button type="button" id="send" class="btn btn-primary create_item save_column">Add Column</button>
+          <button type="button" id="send" class="btn btn-primary create_item save">Add Column</button>
+          <button type="button" class="closed"  id="deleteItem">Close</button>
         </div>
       </div>
     </div>
@@ -74,35 +73,36 @@ if(isset($projectId)){
       <div class="box_content">
         <div class="box_header">
           <h2>Update Item</h2>
-          <button type="button" class="closed"  id="deleteItem">X</button>
         </div>
         <div class="box_body">
           <textarea name="context" id="context" rows="1" cols="30"></textarea>
         </div>
         <div class="box_footer">
-          <button type="button" id="send" class="btn btn-primary create_item save_update_item">Save changes</button>
-          <button type="button" class="erase-item" >Delete</button>
+          <button type="button" id="send" class="btn btn-primary create_item save">Save changes</button>
+          <button type="button" class="closed"  id="deleteItem">Close</button>
         </div>
       </div>
     </div>
+
 
     <div class="add-item">
       <div class="box_content">
         <div class="box_header">
           <h2>Add New Card</h2>
-        <button type="button" class="closed"  id="deleteItem">X</button>
         </div>
         <div class="box_body">
           <textarea name="context" id="add_context" rows="1" cols="30"></textarea>
         </div>
         <div class="box_footer">
-          <button type="button" id="send" class="btn btn-primary create_item save_item">Add Item</button>
+          <button type="button" id="send" class="btn btn-primary create_item save">Add Item</button>
+          <button type="button" class="closed"  id="deleteItem">Close</button>
         </div>
       </div>
     </div>
 
     <main id="main">
       <div class="retro-board">
+
         <?php
         if(!empty($contents)){
         foreach ($contents as $statusRow) :
@@ -111,11 +111,16 @@ if(isset($projectId)){
          ?>
         <div class="card-container" data-status-id="<?php echo $statusRow['container_id']; ?>">
           <div class="card-header">
-            <span class="editable card-header-text<?php echo $statusRow['container_id']; ?>" id="lblname" data-status-id="<?php echo $statusRow['container_id']; ?>"><?php echo $statusRow['container_name']; ?> </span>
+            <span class="editable card-header-text<?php echo $statusRow['container_id']; ?>" class="editable" id="lblname" data-status-id="<?php echo $statusRow['container_id']; ?>"><?php echo $statusRow['container_name']; ?> </span>
+            <div class="edit">
+              <button type="button" name="button" class="reject">X</button>
+              <button type="button" name="button" class="accept">V</button>
+            </div>
             <div class="bars" data-hide-id="<?php echo $statusRow['container_id']; ?>">
               <h5>...</h5>
               <div class="bars-content">
-                <h6 class="erase">Delete</h6>
+              <a href=""><h6> Edit</h6></a>
+              <a href=""><h6>Delete</h6></a>
               </div>
             </div>
           </div>
@@ -127,29 +132,36 @@ if(isset($projectId)){
             foreach($taskResult as $taskRow) :
          ?>
              <li class="text-row ui-sortable-handle"
-             data-task-id="<?php echo $taskRow['id']; ?>"><?php echo $taskRow['title']; ?><button type="button" name="button" class="edit-li" data-task-id="<?php echo $taskRow['id']; ?>">...</button></li>
+             data-task-id="<?php echo $taskRow['id']; ?>"><?php echo $taskRow['title']; ?></li>
+
            <?php
          endforeach;
          }
             ?>
             </ul>
           <div class="newItem">
-            <button type="button"  id="addItem" name="button" class="id_all" data-container-id="<?php echo $statusRow['container_id']?>">+ Add new Card</button>
+            <button type="button"  id="addItem" name="button" class="id_all"data-container-id="<?php echo $statusRow['container_id']?>">+ Add new Card</button>
           </div>
         </div>
         <?php
       endforeach;
     }
       ?>
+
+
       </div>
       <div class="add_Column">
       <button type="button" name="button" id="column">+</button>
       </div>
+
+
       </div>
     </main>
 
     <script type="text/javascript" >
     $(document).ready(function(){
+
+// SORTABLE CONECTION
     $( function() {
         var url = 'dbfiles/edit-status.php';
         $('ul[id^="sort"]').sortable({
@@ -174,29 +186,28 @@ if(isset($projectId)){
           var url ="dbfiles/update-status.php";
             var name= "<?= $projectName ?>";
             var project_id = <?= $projectId ?>;
-            $('.save_column').on("click",function(){
+            $('.save').on("click",function(){
               var value = $('#textVal').val();
          $.ajax({
              type: "POST",
              url: url,
              data: {value: value,project_name:name,project_id:project_id},
              success: function(response){
-                location.reload();
                  }
                });
              });
            });
 
 
-//Update LI
+//Update LI/CARD
         $("li").each(function(){
           var $this = $(this);
-          $(".edit-li").on("click",function(){
+          $this.on("click",function(){
             $('.update-item').show();
             var id = $(this).data('task-id');
             var url ="dbfiles/update-item.php";
             var clickedvalue =$(this).text();
-            $('.save_update_item').on("click",function(){
+            $('.save').on("click",function(){
               $('.edit').show();
               var value = $("textarea#context").val();
             $.ajax({
@@ -204,57 +215,38 @@ if(isset($projectId)){
               url: url,
               data: {value:value,id:id},
               success: function(response){
-                location.reload();
-                }
-              });
-            });
-          });
-        });
-// DELETE LI ITEM/CARD
-        $("li").each(function(){
-          var $this = $(this);
-          $(".edit-li").on("click",function(){
-            $('.update-item').show();
-            var id = $(this).data('task-id');
-            var url ="dbfiles/delete-item.php";
-              $('.erase-item').on("click",function(){
-            $.ajax({
-              type: "POST",
-              url: url,
-              data: {id:id},
-              success: function(response){
-                location.reload();
                 }
               });
             });
           });
         });
 
-// ADDD CARDD
+// ADDD CARDD/LI
           $(".id_all").each(function(){
             var $this = $(this);
-            $this.unbind();
+            alert("heeeerree");
             $this.on("click",function(){
               var name= "<?= $projectName ?>";
               $('.add-item').show();
               var project_id = <?= $projectId ?>;
               var url ="dbfiles/add-item.php";
               var clickedId =$(this).data('container-id');
-                $('.save_item').on("click",function(){
+                $('.save').on("click",function(){
                   var value = $('textarea#add_context').val();
                $.ajax({
                    type: "POST",
                    url: url,
                    data: {value:value, clicked_id:clickedId, project_id:project_id},
                    success: function(response){
-                      location.reload();
+                     alert()
+                       $( 'li' ).html(response);
                        }
                      });
               });
             });
           });
 
-  // UPDATE CONTAINER TEXT
+//UPDATE CONTAINER TITLE
   $(document).on('keypress','#header-text', function(event) {
              var $this = $(this);
            let keycode = (event.keyCode ? event.keyCode : event.which);
@@ -268,13 +260,11 @@ if(isset($projectId)){
                  url: url,
                  data: {valueText: valueText, id_container:id_container},
                  success: function(response){
-                   location.reload();
                      }
                    });
            }
          });
-
-// UPDATE TITLE/GOAL TEXT
+// UPDATE PROJECT/GOAL TITLE
               $(document).on('keypress','#title-text', function(event) {
            var $this = $(this);
          let keycode = (event.keyCode ? event.keyCode : event.which);
@@ -288,26 +278,14 @@ if(isset($projectId)){
                url: url,
                data: {valueText: valueText, project_id:project_id},
                success: function(response){
-                  location.reload();
                    }
                  });
          }
        });
 
-// DELETE COLUMNS
-       $('.erase').click(function(){
-           var clickedId =$(this).parent().parent().attr('data-hide-id');
-           var url = "dbfiles/delete-column.php";
-           $.ajax({
-               type: "POST",
-               url: url,
-               data: {clickedId:clickedId},
-               success: function(response){
-                 location.reload();
-                   }
-                 });
-               });
-
+       setInterval(function(){
+         $('.retro-board').load();
+       }, 1000);
 
           $(document).on("click",".closed",function (){
               $('.update-item').css('display','none');
@@ -320,10 +298,7 @@ if(isset($projectId)){
               $('.add-column').css('display','none');
               $('.add-item').css('display','none');
           });
-          
-          $(document).on("click","#send",function (){
-                $('.box').css('display','none');
-          });
+
 
                   $(".editable").each(function () {
                       var label = $(this);
@@ -341,6 +316,7 @@ if(isset($projectId)){
                       textbox.focusout(function () {
                           $(this).hide();
                           $(this).prev().html($(this).val());
+                          $(this).prev().show();
                       });
                   });
 
@@ -363,7 +339,6 @@ if(isset($projectId)){
                           $(this).prev().show();
                       });
                   });
-
           });
      </script>
   </body>

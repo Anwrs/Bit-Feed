@@ -69,13 +69,7 @@ class library
       return $result;
     }
 
-    // function getProjectname($link)
-    // {
-    //   $db_handle = new DBController();
-    //   $query = "SELECT * FROM retroboard.goals WHERE goal_id=$link";
-    //   $result = $db_handle->startQuery($query,$link);
-    //   return $result;
-    // }
+
 }
 
 

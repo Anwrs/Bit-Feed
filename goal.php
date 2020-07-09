@@ -126,7 +126,7 @@ include 'config/database.php';
             <ul>
                 <li>Achieve your goals</li>
                 <li>Every goal has an retroboard</li>
-                <li>An Personal goal is for yours</li>
+                <li>An Personal goal is for you</li>
                 <li>An Sprint Goal is for meetings</li>
             </ul>
 
