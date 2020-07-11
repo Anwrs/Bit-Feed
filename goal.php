@@ -124,7 +124,6 @@ include 'config/database.php';
             <div class='help-text'>
             <p>How to use:</p>
             <ul>
-                <li>Achieve your goals</li>
                 <li>Every goal has an retroboard</li>
                 <li>An Personal goal is for you</li>
                 <li>An Sprint Goal is for meetings</li>

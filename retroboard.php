@@ -7,7 +7,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
          <link href="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-         <script type="text/javascript" src="js/script.js"></script>
     <title>RetroBoard</title>
   </head>
   <style>
@@ -154,6 +153,9 @@ if(isset($projectId)){
         var url = 'dbfiles/edit-status.php';
         $('ul[id^="sort"]').sortable({
             connectWith: ".sortable",
+            start: function(e, ui){
+       ui.placeholder.height(ui.item.height());
+   },
             receive: function (e, ui) {
                 var status_id = $(ui.item).parent(".sortable").data("status-id");
                 var task_id = $(ui.item).data("task-id");
@@ -320,7 +322,7 @@ if(isset($projectId)){
               $('.add-column').css('display','none');
               $('.add-item').css('display','none');
           });
-          
+
           $(document).on("click","#send",function (){
                 $('.box').css('display','none');
           });

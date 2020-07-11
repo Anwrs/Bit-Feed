@@ -187,16 +187,17 @@ ul{
   margin-bottom: 15px;
 }
 .sortable li {
-  /* margin: 0 5px 5px 5px; */
   margin: 2px 0px 5px 0px;
   font-size: 11px;
   min-width: 100px;
   background-color: white;
-  box-shadow: 1.9px 4px lightgrey;
+  box-shadow: 1px 4px lightgrey;
   min-height: 25px;
   border-radius: 3px;
+  display: flex;
+  max-width: 100%;
+  word-break:break-all;
 }
-
 
 li#li_style  {
   margin: 0 5px 5px 5px;
@@ -317,7 +318,13 @@ li#li_style  {
 ul.sortable.ui-sortable{
   min-height: 100px;
 }
-
+.ui-sortable-placeholder {
+    visibility: inherit !important;
+    background: transparent;
+    border: #666 2px dashed;
+    height: fit-content;
+    overflow: hidden;
+}
 ul.sortable {
     padding-bottom: 10px;
 }
@@ -345,16 +352,6 @@ ul {
     white-space: normal;
     line-height: 20px;
 }
-
-.ui-sortable-placeholder {
-    visibility: inherit !important;
-    background: transparent;
-    border: #666 2px dashed;
-    height: auto;
-    overflow: hidden;
-}
-
-
 
 input[type="text"], textarea , input#inputText, input#addCard {
   outline: none;

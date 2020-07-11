@@ -1,126 +1,149 @@
 $(document).ready(function(){
-alert("presence");
-
-// $('#inputText input').uniqueId();
-//
-// var count= 1;
-// var countcard= 1;
-// $('button#addItem').unbind("click");
-$('body').on('click','button#addItem',function(){
-//     var inputVal =$('#modal_dialog #li_val').val();
-//       if(inputVal === ""){
-//         inputVal= "";
-//       }
-//       var name;
-//       name =  inputVal;
-//       var that = this;
-//       var ulParent = $(this).closest(".card-container");
-//       var thisLi = ulParent.find(".sortable");
-//       countcard++;
-//       var liItem = '<li class="ui-state-default" id="li_style-'+count+'"  datali-editable><input type="text" name="" id="card '+countcard+'" value="hi" placeholder="Give a title"></li>';
-//       count++;
-//
-//       thisLi.append(liItem);
-//       name = $(that).val('');
-    // $('.modal').css('display','block');
-    alert("addddd");
-//
-});
-
-// function addItem() {
-//   alert("Bruhhhh");
-// }
-//
-// $("button#addItem").click( function(){
-//   alert("goodos");
-// });
-//
-// $(document).on("click","#addItem", function (){
-//     // $('.modal').css('display','block');
-//     alert("Test");
-// });
-
-//
-
-$("div.newItem").click(function() {
-  alert("eee");
-})
-
-$(document).on("click",".closed",function (){
+$(document).on("click",".close",function (){
     $('.modal').css('display','none');
     $('.modal_li').css('display','none');
 
-});
+  });
+
+// $(document).on("click",".close",function (){
+//     $('.modal').css('display','none');
+//     $('.modal_li').css('display','none');
+//
+// });
 
 $(document).on("click","#send",function (){
       $('.modal').css('display','none');
       $('.modal_li').css('display','none');
+
 });
 
-$(".clicked").click(function(){
-  alert("clicked");
-})
-
-function addItem() {
-  var newValue = "Heeeey Guys";
-  var url = 'edit-status.php';
-
-  var data = {value: newValue};
-  var xhttp = new XMLHttpRequest();
-    // Set POST method and ajax file path
-    xhttp.open("POST", "edit-status.php", true);
-
-    // call on request changes state
-    xhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-
-    var response = this.responseText;
-    if(response == 1){
-       alert("Insert successfully.");
-     }
-     xhttp.setRequestHeader("Content-Type", "application/json");
-
-  // Send request with data
-  xhttp.send(JSON.stringify(data));
-  // $.ajax({
-  //   type: "POST",
-  //   data: {Value: newValue}
-  //     url: url,
-  //     success: function(response){
-  //         }
-  // });
-}
 
 
-//this function is going to be used for appending new li items to correct positions
-function UpdateLi(){
-  var url = 'edit-status.php';
-  var status_id = $(ui.item).parent(".sortable").data("status-id");
-  var task_id = $(ui.item).data("task-id");
-  $.ajax({
-      url: url+'?status_id='+status_id+'&task_id='+task_id,
-      success: function(response){
-          }
-  });
-}
+// $(document).on("click","#addItem", function (){
+    // $('.modal').css('display','block');
+// });
 
-var count2= 1;
-$('button#column').unbind("click");
-$(document).on('click','button#column',function (){
-  var div = $('<div class="card-container"><div class="card-header"><span class="card-header-text">Title Here</span></div><ul class="sortable ui-sortable" id="sort" data-status-id><li class="text-row ui-sortable-handle" data-task-id>Test</li></ul><div class="newItem"><button type="button"  id="addItem" name="button">+ Add new Card</button></div></div>');
-  count2++;
 
-  console.log(count2);
-  $(div).find('li')
-      .remove()
-    .end();
-  $('.retro-board').append(div);
+// var update = function(e) {
+//     var name = $('#modal_dialog #li_val').val();
+//      // $(e.target).siblings("#sortable ul").append('<li id="li_style"datali-editable>'+name+'</li>');
+//      $("#sortable").append('<li id="li_style"datali-editable>'+name+'</li>');
+//      // $('#addItem').parent().parent().parent()append('<li id="li_style"datali-editable>'+name+'</li>');
+//      // $(this).closest('#sortable ul').append('<li id="li_style"datali-editable>'+name+'</li>');
+// };
+// $('.save').click(update);
+// var update;
+$('body').on('click','#addItem',function(){
 
+    // var update = function(e) {
+    var inputVal =$('#modal_dialog #li_val').val();
+
+    if(inputVal === ""){
+      inputVal= "untitled";
+    }
+    var ulParent = $(this).closest(".container");
+    var name =  inputVal;
+    var thisLi = ulParent.find("#sortable");
+    if(name !=""){
+      var liItem ='<li id="li_style"datali-editable>'+name+'</li>';
+      $(this).closest('#sortable').append('<li id="li_style"datali-editable>'+name+'</li>');
+           // $("#sortable").append('<li id="li_style"datali-editable>'+name+'</li>');
+    }
+    thisLi.append(liItem);
+    name.val('');
+    $('.save').click(function() {
+      alert("gosh darn variables");
     });
+  // };
+});
+
+
+
+$(document).on("click",".update",function (){
+    $('.modal_li').css('display','none');
+  });
+
+
+
+$(document).on('click','.add_Column',function (){
+  var $newDiv= $('<div class="container"><div id="title"><h3 class="editable" id="textq" datatitle-editable>Title</h3><div class="handlers"><button type="button"  id="addItem" name="button">+</button><button type="button"  id="deleteItem" name="button">x</button></div></div><ul   id="sortable" class="connectedSortable"></div>');
+  $('.containment').append($newDiv);
+
+  $('.container ul').sortable({
+    connectWith:'.connectedSortable',
+    cursor: 'pointer'
+  });
+});
 
 $(document).on('click','#deleteItem', function(){
-  $(this).parent().parent().parent().parent().remove();
+  $(this).parent().parent().parent().remove();
+})
+
+$(function () {
+  $(".container ul").sortable({
+    connectWith:'.connectedSortable',
+    cursor: 'pointer'
+  });
 });
+
+
+
+
+$('body').on('click', '[data-editable]', function(){
+
+  var $el = $(this);
+
+  var $input = $('<input/>').val( $el.text() );
+  $input.css({
+    "position":"relative",
+    "top":"40px",
+    "padding":"5px"
+    // "left":"25%"
+});
+  $el.replaceWith( $input );
+
+  var save = function(){
+    var $p = $('<h1 data-editable />').text( $input.val() );
+    $input.replaceWith( $p );
+  };
+   $("#placeholder").css({'position':"absolute"});
+  $input.one('blur', save).focus();
+
+});
+
+$('body').on('click', '[datatitle-editable]', function(){
+
+  var $el = $(this);
+
+  var $input = $('<input/>').val( $el.text() );
+  $el.replaceWith( $input );
+
+  var save = function(){
+    var $p = $('<h3 datatitle-editable />').text( $input.val() );
+    $input.replaceWith( $p );
+  };
+  $input.one('blur', save).focus();
+
+});
+
+
+
+$('body').on('click', '[datali-editable]', function(){
+
+  var $el = $(this);
+
+  var $input = $('<input/>').val( $el.text() );
+  $el.replaceWith( $input );
+
+  var save = function(){
+    var $p = $('<li datali-editable />').text( $input.val() );
+    $input.replaceWith( $p );
+  };
+  $input.one('blur', save).focus();
+
+});
+
+
 
 
 });

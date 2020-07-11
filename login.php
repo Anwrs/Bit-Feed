@@ -1,9 +1,10 @@
 <?php
+include 'config/login/login_handler.php';
+
 if (isset($_SESSION['user'])) {
     header("Location:goal.php");
     exit;
 }
-include 'config/login/login_handler.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ include 'config/login/login_handler.php';
             <img src="images/bitwhite.png" alt="bit-logo">
             <div class="link">
                 <span><a href="index.php"><i class="fas fa-bars"></i> Home</a></span>
-                <span><a href="login.php"><i class="far fa-comments"></i>  Contact</a></span>
+                <span><a href="contact.php"><i class="far fa-comments"></i>  Contact</a></span>
             </div>
         </div>
 
